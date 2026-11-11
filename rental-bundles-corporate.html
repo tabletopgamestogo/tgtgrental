@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate &amp; Group Rental Bundles — TableTop Games To Go</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF6EF;
+    --bg-alt:#FFFFFF;
+    --bg-alt2:#F2ECDE;
+    --ink:#20182A;
+    --ink-dim:#453A54;
+    --red:#E6394A;
+    --orange:#F4A259;
+    --yellow:#FFD23F;
+    --green:#4FB477;
+    --purple:#9B5DE5;
+    --muted:#6B5E7D;
+    --border:#E4DCEE;
+    --price:#9C5515;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{ font-size:17.5px; }
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(circle at 20% 0%, #FFFFFF 0%, var(--bg) 60%);
+    color:var(--ink);
+    font-family:'Nunito',sans-serif;
+    min-height:100vh;
+    padding:32px 16px 64px;
+  }
+  .app{ width:100%; max-width:980px; margin:0 auto; }
+
+  .brand{ text-align:center; margin-bottom:22px; }
+  .brand-logo{
+    width:100%; max-width:360px; height:auto; border-radius:14px;
+    box-shadow:0 10px 25px rgba(39,31,48,0.18); margin:0 auto;
+  }
+  .brand p{ margin:12px 0 0; color:var(--ink-dim); font-weight:700; font-size:0.95rem; }
+  .back-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 16px; margin-bottom:18px; }
+  .back-links a{ color:var(--ink-dim); font-size:0.85rem; font-weight:700; text-decoration:none; }
+  .back-links a:hover{ color:var(--red); }
+
+  .hero{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:28px 24px; text-align:center; margin-bottom:20px; box-shadow:0 16px 36px rgba(39,31,48,0.08);
+  }
+  .hero h2{ font-family:'Bungee',cursive; font-size:1.3rem; line-height:1.5; margin:0 0 10px; }
+  .hero p{ color:var(--ink-dim); font-size:0.92rem; line-height:1.6; margin:0 0 14px; }
+  .hero p:last-child{ margin-bottom:0; }
+
+  .btn-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .btn-primary{
+    display:inline-block; background:linear-gradient(90deg,#E8899A,#F4C08C); color:#3A2430;
+    font-family:'Bungee',cursive; font-size:0.8rem; letter-spacing:0.5px; text-decoration:none;
+    padding:14px 22px; border-radius:12px; border:none; cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(232,137,154,0.35); }
+  .btn-social{
+    display:inline-block; background:var(--bg-alt2); border:2px solid var(--border); color:var(--ink);
+    font-weight:800; font-size:0.82rem; text-decoration:none; padding:12px 18px; border-radius:12px;
+    transition:all 0.15s ease;
+  }
+  .btn-social:hover{ border-color:var(--orange); transform:translateY(-1px); }
+
+  .tab-intro{ color:var(--ink-dim); font-size:0.88rem; line-height:1.6; margin:0 0 16px; text-align:center; }
+
+  .legend-box{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:18px; font-size:0.85rem; color:var(--ink-dim); line-height:1.6;
+  }
+  .legend-box h3{ font-family:'Bungee',cursive; font-size:0.9rem; color:var(--ink); margin:0 0 10px; }
+  .legend-box p{ margin:0 0 8px; }
+  .legend-box p:last-child{ margin-bottom:0; }
+  .rlen-list{ margin:0 0 10px; padding-left:20px; }
+  .rlen-list li{ margin-bottom:3px; }
+  .muted-note{ font-size:0.82rem; color:var(--muted); font-style:italic; }
+  .field-note{ display:block; font-size:0.78rem; color:var(--muted); font-style:italic; margin-top:4px; }
+
+  .quicknav{
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center;
+    margin-bottom:20px; background:var(--bg-alt2); padding:10px; border-radius:14px;
+  }
+  .quicknav a{
+    color:var(--ink); background:var(--bg-alt2); border:1px solid var(--border); border-radius:20px;
+    padding:7px 13px; font-size:0.76rem; font-weight:800; text-decoration:none; transition:all 0.15s ease;
+  }
+  .quicknav a:hover{ border-color:var(--orange); color:var(--price); }
+  .clear-btn{
+    margin-left:auto; background:none; border:1px solid var(--muted); color:var(--ink-dim);
+    border-radius:20px; padding:7px 13px; font-size:0.76rem; font-weight:800; cursor:pointer;
+    font-family:'Nunito',sans-serif; transition:all 0.15s ease;
+  }
+  .clear-btn:hover{ border-color:var(--red); color:var(--red); }
+
+  .bundle-section{ margin-bottom:8px; }
+  .section-head{ margin:28px 0 14px; }
+  .section-head h2{ font-family:'Bungee',cursive; font-size:1.05rem; margin:0 0 4px; color:var(--ink); }
+  .section-head p{ font-size:0.85rem; color:var(--ink-dim); margin:0; }
+
+  .pkg-card{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:14px;
+    margin-bottom:12px; overflow:hidden;
+  }
+  .pkg-card[open]{ box-shadow:0 12px 28px rgba(39,31,48,0.12); }
+  .pkg-card.pkg-addon{ margin-left:18px; border-left:3px solid var(--red); }
+  .pkg-bar{
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    padding:12px 16px; cursor:pointer; list-style:none; user-select:none;
+  }
+  .pkg-bar::-webkit-details-marker{ display:none; }
+  .pkg-check{
+    display:flex; align-items:center; gap:7px; cursor:pointer; flex-shrink:0;
+  }
+  .pkg-check input{ width:18px; height:18px; flex-shrink:0; cursor:pointer; accent-color:#1A1220; }
+  .pkg-check-txt{ font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.3px; line-height:1.25; opacity:0.92; }
+  .pkg-title{ font-family:'Bungee',cursive; font-size:0.86rem; line-height:1.3; }
+  .pkg-tags{ font-size:0.76rem; font-weight:700; font-style:italic; opacity:0.9; }
+  .pkg-bar-end{ margin-left:auto; display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .pkg-count{
+    font-size:0.72rem; font-weight:800; background:rgba(0,0,0,0.16);
+    padding:4px 10px; border-radius:12px; white-space:nowrap;
+  }
+  .pkg-count.met{ background:#E3F6EA; color:#1F6B3F; }
+  .pkg-count.warn{ background:#FBE4E8; color:#A6324A; }
+  .chev{ font-size:0.9rem; transition:transform 0.2s ease; flex-shrink:0; }
+  .pkg-card[open] .chev{ transform:rotate(180deg); }
+
+  .pkg-body{ padding:4px 16px 16px; }
+  .pkg-pitch{ font-size:0.86rem; font-style:italic; color:var(--ink-dim); margin:8px 0 10px; }
+  .pkg-note{ font-size:0.82rem; color:var(--muted); font-style:italic; margin:8px 0 0; }
+
+  .tbl-label{ font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); margin:12px 0 6px; }
+  .gtable-wrap{ overflow-x:auto; border-radius:10px; border:1px solid var(--border); }
+  table.gtable, table.gmtable{ width:100%; min-width:740px; border-collapse:separate; border-spacing:0; font-size:0.82rem; }
+  table.gmtable{ min-width:0; }
+  table.gtable th, table.gmtable th{
+    text-align:left; padding:8px 10px; background:var(--bg-alt2); color:var(--ink);
+    font-weight:800; font-size:0.66rem; text-transform:uppercase; letter-spacing:0.4px;
+    border-bottom:1px solid var(--border); white-space:nowrap;
+  }
+  table.gtable td, table.gmtable td{ padding:7px 10px; border-bottom:1px solid var(--border); color:var(--ink-dim); vertical-align:middle; }
+  table.gtable tbody tr:last-child td, table.gmtable tbody tr:last-child td{ border-bottom:none; }
+  table.gtable tbody tr:nth-child(even){ background:rgba(39,31,48,0.025); }
+  table.gtable td.cb{ width:34px; text-align:center; }
+  table.gtable td.cb input{ width:17px; height:17px; cursor:pointer; accent-color:var(--purple); }
+  table.gtable td.g-name{ font-weight:800; color:var(--ink); white-space:nowrap; }
+  table.gtable td.g-name label{ cursor:pointer; }
+  table.gtable td.g-players{ font-size:0.78rem; white-space:nowrap; }
+  table.gtable td.g-cat, table.gtable td.g-ptype, table.gtable td.g-mech, table.gtable td.g-dur{ white-space:nowrap; font-size:0.78rem; }
+  table.gtable td.g-price{ text-align:right; font-weight:800; color:var(--price); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  table.gtable th:nth-child(n+8){ text-align:right; }
+  table.gtable td.muted, table.gtable td.quote-cell{ color:var(--muted); font-style:italic; font-size:0.78rem; }
+  table.gtable tr.row-unavailable{ opacity:0.5; }
+  table.gtable tr.row-unavailable td.g-name{ text-decoration:line-through; }
+  table.gtable tr.row-unavailable td.cb input{ cursor:not-allowed; }
+  table.gtable tr.row-unavailable td.g-name label{ cursor:not-allowed; }
+  table.gtable td.unavailable-cell{ color:var(--muted); font-style:italic; font-size:0.78rem; }
+  .sw{ display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+
+  p.line-also, p.line-avoid{ font-size:0.8rem; margin:8px 0; line-height:1.55; }
+  p.line-also{ color:var(--ink-dim); }
+  p.line-avoid{ color:var(--red); }
+  ul.notes{ margin:8px 0; padding-left:18px; font-size:0.8rem; color:var(--ink-dim); line-height:1.55; }
+  .kits{ margin-top:10px; padding-top:10px; border-top:1px dashed var(--border); }
+  .kit-line{ font-size:0.78rem; color:var(--ink-dim); line-height:1.7; }
+  .kit-line strong{ color:var(--ink); }
+
+  .footer-cta{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:26px 22px; text-align:center; margin-top:28px;
+  }
+  .legal-note{ margin-top:18px; font-size:0.76rem; color:var(--muted); line-height:1.6; }
+  .legal-note a{ color:var(--price); font-weight:800; text-decoration:none; }
+  .legal-note a:hover{ text-decoration:underline; }
+
+  .details-box{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:18px;
+  }
+  .details-box h3{ font-family:'Bungee',cursive; font-size:0.9rem; color:var(--ink); margin:0 0 14px; }
+  .req{ color:var(--red); font-weight:800; }
+  .required-note{ font-family:'Nunito',sans-serif; font-size:0.7rem; font-weight:700; color:var(--muted); text-transform:none; letter-spacing:0; }
+  .details-grid{ display:flex; flex-wrap:wrap; gap:14px 22px; margin-bottom:14px; }
+  .details-field{ flex:1; min-width:220px; }
+  .details-field label{ display:block; font-size:0.78rem; color:var(--ink-dim); margin-bottom:5px; font-weight:700; }
+  .details-field input[type="text"], .details-field input[type="date"]{
+    width:100%; background:var(--bg-alt2); border:2px solid var(--border); border-radius:10px;
+    color:var(--ink); font-family:'Nunito',sans-serif; font-weight:600; font-size:0.9rem;
+    padding:10px 12px; outline:none; transition:border-color 0.15s ease;
+  }
+  .details-field input[type="text"]:focus, .details-field input[type="date"]:focus{ border-color:var(--orange); }
+  .rlen-row{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 22px; }
+  .rlen-row > strong{ font-size:0.82rem; color:var(--ink-dim); }
+  .rlen-option{ display:flex; align-items:center; gap:6px; font-size:0.85rem; font-weight:700; cursor:pointer; }
+  .rlen-option input{ width:16px; height:16px; cursor:pointer; accent-color:var(--purple); }
+
+  .confirm-overlay{
+    display:none; position:fixed; inset:0; background:rgba(39,31,48,0.45); z-index:100;
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .confirm-card{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    max-width:420px; width:100%; padding:24px; text-align:center;
+    box-shadow:0 20px 50px rgba(39,31,48,0.3);
+  }
+  .confirm-msg{ margin:0 0 14px; color:var(--ink); font-size:0.92rem; line-height:1.55; }
+  .alert-list{
+    display:none; text-align:left; margin:0 0 18px; padding:12px 16px 12px 32px;
+    background:#FBE4E8; border-radius:10px; color:#8A2C40; font-size:0.84rem; line-height:1.65;
+  }
+  .alert-list li{ margin-bottom:2px; }
+  .confirm-btns{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .confirm-btns button{
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; border-radius:10px;
+    padding:10px 20px; cursor:pointer; transition:all 0.15s ease;
+  }
+  .confirm-no{ background:var(--bg-alt2); border:2px solid var(--border); color:var(--ink); }
+  .confirm-no:hover{ border-color:var(--muted); }
+  .confirm-yes{
+    background:linear-gradient(90deg,#E8899A,#F4C08C); color:#3A2430; border:2px solid transparent;
+  }
+  .confirm-yes:hover{ transform:translateY(-1px); }
+</style>
+</head>
+<body data-variant="corporate">
+<div class="app">
+  <div class="brand">
+    <img src="assets/logo-banner.png" alt="Tabletop Games To Go" class="brand-logo">
+    <p>Corporate &amp; Group Rental Bundles</p>
+  </div>
+  <div class="back-links">
+    <a href="game-rates.html" target="_blank" rel="noopener">← Individual game rates</a>
+    <a href="rental-terms.html" target="_blank" rel="noopener">Rental terms &amp; policies →</a>
+  </div>
+
+  <div class="hero">
+    <h2>Corporate &amp; Group Rental Bundles</h2>
+    <p>Curated Main + Lights combos for every occasion, category, player type, and fandom, tuned for office and organization events — every corporate booking includes a Game Master. Tick the games you want and message us when you're ready to book.</p>
+  </div>
+
+
+  <div class="details-box" id="your-details">
+    <h3>Your Details <span class="required-note">(<span class="req">*</span> required)</span></h3>
+    <div class="details-grid">
+      <div class="details-field"><label for="field-orgname">Organization / Company Name <span class="req">*</span></label><input type="text" id="field-orgname"><span class="field-note">(Make sure that what you place here is the same as the one in Google Form)</span></div>
+      <div class="details-field"><label for="field-contact">Contact Person <span class="req">*</span></label><input type="text" id="field-contact" autocomplete="name"><span class="field-note">(Make sure that what you place here is the same as the one in Google Form)</span></div>
+    </div>
+    <div class="details-grid">
+      <div class="details-field"><label for="field-date">Preferred Rental Date(s) <span class="req">*</span></label><input type="date" id="field-date"></div>
+      <div class="details-field"><label for="field-attendees">Number of Attendees</label><input type="text" id="field-attendees"></div>
+    </div>
+    <div class="rlen-row">
+      <strong>Rental Length <span class="req">*</span>:</strong>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-1day"> 1 Day</label>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-2days"> 2 Days</label>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-3days"> 3 Days</label>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-3plus"> 3+ Days <span class="muted-note">(need to PM Tabletop Games To Go to discuss)</span></label>
+    </div>
+  </div>
+
+  <div id="bundles-root"></div>
+
+  <div class="footer-cta">
+    <div class="btn-row">
+      <button type="button" class="btn-primary" id="save-pdf-btn">Save Order as PDF →</button>
+    </div>
+    <p class="legal-note">Attach the saved Order PDF to our <a data-href-field="bookingFormUrl" href="#" target="_blank" rel="noopener">booking form</a> to complete your order.</p>
+  </div>
+</div>
+<script src="site-config.js"></script>
+<script src="board-games-data.js"></script>
+<script src="rental-bundles-data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+<script src="rental-bundles.js"></script>
+<script>
+  SiteConfig.applySiteConfig(document, SiteConfig.SITE);
+</script>
+</body>
+</html>

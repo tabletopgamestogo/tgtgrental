@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Terms — TableTop Games To Go</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#18101F;
+    --bg-alt:#241A30;
+    --bg-alt2:#2E2039;
+    --cream:#F7F1E6;
+    --cream-dim:#C9BEDA;
+    --red:#E6394A;
+    --orange:#F4A259;
+    --yellow:#FFD23F;
+    --green:#4FB477;
+    --purple:#9B5DE5;
+    --muted:#8C7FA0;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(circle at 20% 0%, #2A1D38 0%, var(--bg) 55%);
+    color:var(--cream);
+    font-family:'Nunito',sans-serif;
+    min-height:100vh;
+    padding:32px 16px 64px;
+  }
+  .app{ width:100%; max-width:720px; margin:0 auto; }
+
+  .brand{ text-align:center; margin-bottom:22px; }
+  .brand .logo{
+    width:100%; max-width:360px; height:auto; border-radius:14px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    margin:0 auto;
+  }
+  .brand p{ margin:12px 0 0; color:var(--cream-dim); font-weight:700; font-size:0.95rem; }
+  .back-link{ display:block; text-align:center; margin-bottom:18px; }
+  .back-link a{ color:var(--cream-dim); font-size:0.85rem; font-weight:700; text-decoration:none; }
+  .back-link a:hover{ color:var(--yellow); }
+
+  .hero{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:28px 24px; text-align:center; margin-bottom:20px; box-shadow:0 20px 50px rgba(0,0,0,0.35);
+  }
+  .hero h2{ font-family:'Bungee',cursive; font-size:1.3rem; line-height:1.5; margin:0 0 10px; }
+  .hero p{ color:var(--cream-dim); font-size:0.92rem; line-height:1.6; margin:0 0 18px; }
+
+  .btn-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .btn-primary{
+    display:inline-block; background:linear-gradient(90deg,var(--red),var(--orange)); color:#1A1220;
+    font-family:'Bungee',cursive; font-size:0.8rem; letter-spacing:0.5px; text-decoration:none;
+    padding:14px 22px; border-radius:12px; transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(230,57,74,0.35); }
+  .btn-social{
+    display:inline-block; background:var(--bg-alt2); border:2px solid #3A2A4A; color:var(--cream);
+    font-weight:800; font-size:0.82rem; text-decoration:none; padding:12px 18px; border-radius:12px;
+    transition:all 0.15s ease;
+  }
+  .btn-social:hover{ border-color:var(--orange); transform:translateY(-1px); }
+
+  .section{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:24px 22px; margin-bottom:16px;
+  }
+  .section h3{ font-family:'Bungee',cursive; font-size:1.02rem; line-height:1.5; margin:0 0 14px; color:var(--yellow); }
+  .section p{ color:var(--cream-dim); font-size:0.9rem; line-height:1.65; margin:0 0 12px; }
+  .section ul{ margin:0 0 12px; padding-left:20px; color:var(--cream-dim); font-size:0.9rem; line-height:1.7; }
+  .section ul li{ margin-bottom:6px; }
+  .section .note{
+    background:var(--bg-alt2); border-radius:10px; padding:12px 14px; font-size:0.85rem;
+    color:var(--cream-dim); border-left:4px solid var(--purple);
+  }
+  .quote-cta{ text-align:center; margin-top:14px; }
+  .quote-cta a{ color:var(--yellow); font-weight:800; text-decoration:none; font-size:0.85rem; }
+  .quote-cta a:hover{ text-decoration:underline; }
+  .table-wrap{ overflow-x:auto; margin-bottom:6px; }
+  table.policy-table{ width:100%; border-collapse:collapse; font-size:0.85rem; }
+  table.policy-table th, table.policy-table td{
+    text-align:left; padding:10px 12px; border-bottom:1px solid #3A2A4A; color:var(--cream-dim);
+  }
+  table.policy-table th{ color:var(--cream); font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.5px; }
+  table.policy-table tr:last-child td{ border-bottom:none; }
+  .accordion-item{ border-bottom:1px solid #3A2A4A; }
+  .accordion-item:last-child{ border-bottom:none; }
+  .accordion-header{
+    width:100%; text-align:left; background:none; border:none; color:var(--cream);
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:0.92rem; padding:14px 4px;
+    cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px;
+  }
+  .accordion-header .chevron{ transition:transform 0.2s ease; color:var(--orange); flex-shrink:0; }
+  .accordion-header[aria-expanded="true"] .chevron{ transform:rotate(180deg); }
+  .accordion-body{
+    max-height:0; overflow:hidden; transition:max-height 0.25s ease;
+    color:var(--cream-dim); font-size:0.87rem; line-height:1.65;
+  }
+  .accordion-body p{ margin:0 0 10px 4px; padding-right:4px; color:var(--cream-dim); }
+  .accordion-item[data-open="true"] .accordion-body{ max-height:600px; }
+  .footer-cta{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:26px 22px; text-align:center;
+  }
+  .footer-cta h3{ font-family:'Bungee',cursive; font-size:1.05rem; margin:0 0 10px; }
+  .footer-cta p{ color:var(--cream-dim); font-size:0.88rem; line-height:1.6; margin:0 0 16px; }
+  .legal-note{ margin-top:18px; font-size:0.76rem; color:var(--muted); line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="brand">
+    <img class="logo" src="assets/logo-banner.png" alt="TableTop Games To Go">
+    <p>Rental Terms &amp; Policies</p>
+  </div>
+  <div class="back-link"><a href="index.html">← Not sure what to rent? Take the quiz</a></div>
+
+  <div class="hero">
+    <h2>Board Game Rentals &amp; Game Master Sessions</h2>
+    <p>We bring the games to your door — with or without a Game Master to teach and run them. Here's how renting with us works, in plain language.</p>
+    <div class="btn-row">
+      <a class="btn-primary" data-href-field="bookingFormUrl" href="#" target="_blank" rel="noopener">BOOK A RENTAL →</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>How It Works</h3>
+    <ul>
+      <li>Tell us if you're booking as an individual or for a company.</li>
+      <li>Be ready to submit a copy of your government ID — don't worry, we handle it under the Data Privacy Act (RA 10173).</li>
+      <li>Borrowers must be 18 years old or older.</li>
+      <li>A booking is confirmed once the down payment and security deposit are settled, and a signed Rental Agreement is on file with us.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Rental Periods</h3>
+    <p>Choose a 1, 2, or 3-day package. Release time is 10:00 AM, with return due by 7:00 AM on the corresponding day.</p>
+    <ul>
+      <li><strong>1 Day</strong> — return by 7:00 AM the following day.</li>
+      <li><strong>2 Days</strong> — return by 7:00 AM, two days after release.</li>
+      <li><strong>3 Days</strong> — return by 7:00 AM, three days after release.</li>
+    </ul>
+    <div class="note">Delivery time doesn't count against your rental time — if we arrive early, you can start right away. If renting multiple packages in one booking, each still returns on its own schedule, even if others in the same order run longer.</div>
+  </div>
+
+  <div class="section">
+    <h3>Payment &amp; Security Deposit</h3>
+    <p>A booking is confirmed once 75% of the Rental Fee plus a Security Deposit (equal to 50% of the item value) are paid. The remaining 25% of the Rental Fee is automatically deducted from the deposit after the rental concludes, and any remaining balance is refunded within 2–5 business days after we inspect the returned items.</p>
+    <p>We accept Cash, GCash, Maya, and Bank Transfer (BDO or BPI).</p>
+    <div class="quote-cta">Want to know the actual rate for the games you have in mind? <a data-href-field="facebookUrl" href="#" target="_blank" rel="noopener">Message us for a quote →</a></div>
+  </div>
+
+  <div class="section">
+    <h3>Taking Care of the Games</h3>
+    <p>You'll have one hour after release to inspect the items and flag any pre-existing issues. After that, we ask that you:</p>
+    <ul>
+      <li>Handle everything with reasonable care and keep components complete.</li>
+      <li>Never write on, mark, glue, paint, tear, cut, tape, or otherwise alter any piece.</li>
+      <li>Keep everything free of stains, food residue, bite marks, and liquid damage.</li>
+      <li>Keep sleeves, cases, and packaging intact.</li>
+      <li>Return everything in the same condition you received it, allowing for normal, reasonable wear.</li>
+      <li>Let us know right away if anything gets damaged, lost, or goes missing.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Late, Lost &amp; Damaged Items</h3>
+    <ul>
+      <li>An item is considered <strong>late</strong> if it isn't packed within 15 minutes of the agreed return time.</li>
+      <li>An item is considered <strong>lost</strong> if it isn't returned within 24 hours of the agreed return time, and there's no communication from you about it.</li>
+      <li>Depending on the situation, charges may apply for replacing missing components, repairing damage, professional cleaning, or full replacement value (plus shipping) for anything that can't be restored.</li>
+      <li>We'll send an itemized statement for any charges — deducted from your security deposit first, and if the deposit isn't enough to cover it, we'll bill you the remaining balance, due within 7 days of us sending you that amount.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Cancellation &amp; Rescheduling</h3>
+    <p>Bookings must be made 3 to 30 days ahead of your release date. If you need to cancel a confirmed booking:</p>
+    <div class="table-wrap">
+      <table class="policy-table">
+        <thead>
+          <tr><th>When you cancel</th><th>Down payment</th><th>Security deposit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>7+ days before release</td><td>Full refund</td><td>Full refund</td></tr>
+          <tr><td>3–6 days before release</td><td>25% refunded</td><td>Full refund</td></tr>
+          <tr><td>2 days before, up to day-of</td><td>No refund</td><td>Deduct 25% of the Rent Amount to the Security Deposit — the rest will be refunded</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;">If we need to cancel your confirmed booking, you'll get a full refund of your down payment and deposit — or, if you'd rather, we'll apply it toward a rescheduled booking.</p>
+  </div>
+
+  <div class="section">
+    <h3>Hiring a Game Master (Optional)</h3>
+    <p>Want someone to run the game for you? Our Game Masters handle:</p>
+    <ul>
+      <li>Setting up the game and any initial setup steps.</li>
+      <li>Teaching the rules at the start, with clarifications as you play.</li>
+      <li>Tracking score when the game calls for it.</li>
+      <li>Settling rules disputes as the final word at the table.</li>
+      <li>Keeping the pace of play moving.</li>
+      <li>Packing everything away once you're done playing that round, as long as the GM is still on the premises.</li>
+    </ul>
+    <p>Hire a GM in 1 to 4-hour blocks, used consecutively at the start of your rental period — not spread across a multi-day rental. If we arrive late or a session ends early for reasons on our end, you can choose a time extension or a partial refund.</p>
+  </div>
+
+  <div class="section" id="good-to-know">
+    <h3>Good to Know</h3>
+    <div class="accordion" id="accordion-legal">
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">Governing law &amp; disputes<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>This agreement is governed by Philippine law. If a disagreement comes up, we'll first try to resolve it amicably — if that doesn't work, either party may bring the matter to the appropriate Small Claims Court.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">Data privacy<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>By booking with us, you consent to our collection and use of your name, address, contact details, and ID number for booking, verification, and service purposes, in line with the Data Privacy Act of 2012 (RA 10173). We don't share your information with third parties except as needed to fulfill your booking or as required by law.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">Photos &amp; marketing<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>We may photograph or record your session for our marketing — social media, our website, print materials. If you'd rather not be included, just let us know in writing before your session and we'll do our best to leave you out of anything we publish.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">How we send official notices<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>Cancellations, reschedules, and any charge statements are sent through the Facebook or Instagram Messenger account we've been using to arrange your booking — so keep an eye on those.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">Tagging us on social media<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>Feel free to tag our Facebook, Instagram, or TikTok pages whenever you post about your game night — we love seeing it!</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="accordion" id="accordion-faq">
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">What ID do I need to bring?<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>Just a copy of your government ID — we handle it under the Data Privacy Act (RA 10173) — and you must be 18 or older to rent.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">What happens if I return a game late?<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>An item not packed within 15 minutes of your agreed return time is considered late, and additional charges may apply — message us and we'll confirm the rate. If it's not back within 24 hours of that time and there's no communication from you about it, it's treated as lost.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">What if something breaks or goes missing?<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>We'll send an itemized statement covering repair, replacement, or cleaning costs as applicable — deducted from your security deposit first, and if the deposit isn't enough to cover it, we'll bill you the remaining balance, due within 7 days of us sending you that amount.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">Can I hire a Game Master?<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>Yes — add a GM for 1 to 4 hours to have someone set up, teach, and run your games for you. See "Hiring a Game Master" above for what's included.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">What if I need to cancel?<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>Refunds depend on how far ahead you cancel — see the Cancellation &amp; Rescheduling table above. The earlier you let us know, the more you get back.</p></div>
+      </div>
+      <div class="accordion-item" data-open="false">
+        <button class="accordion-header" aria-expanded="false">How does the security deposit work?<span class="chevron">▾</span></button>
+        <div class="accordion-body"><p>It's 50% of the rented item's value, required for every booking. Part of it covers the remaining rental fee automatically; the rest is refunded within 2–5 business days after we inspect the returned games, minus any charges for damage or loss.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Ready to Book?</h3>
+    <p>Message us on Facebook, Instagram, or TikTok, or fill out our booking form directly and we'll bring the games to you.</p>
+    <div class="btn-row">
+      <a class="btn-primary" data-href-field="bookingFormUrl" href="#" target="_blank" rel="noopener">BOOK A RENTAL →</a>
+    </div>
+    <div class="btn-row" style="margin-top:12px;">
+      <a class="btn-social" data-href-field="facebookUrl" href="#" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn-social" data-href-field="instagramUrl" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn-social" data-href-field="tiktokUrl" href="#" target="_blank" rel="noopener">TikTok</a>
+    </div>
+    <div class="legal-note">This page summarizes our Rental Agreement in plain language. The full signed agreement (provided at delivery) governs your booking.</div>
+  </div>
+
+</div>
+<script src="site-config.js"></script>
+<script>
+  SiteConfig.applySiteConfig(document, SiteConfig.SITE);
+  SiteConfig.initAccordions(document);
+</script>
+</body>
+</html>

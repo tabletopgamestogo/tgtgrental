@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rates — TableTop Games To Go</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#18101F;
+    --bg-alt:#241A30;
+    --bg-alt2:#2E2039;
+    --cream:#F7F1E6;
+    --cream-dim:#C9BEDA;
+    --red:#E6394A;
+    --orange:#F4A259;
+    --yellow:#FFD23F;
+    --green:#4FB477;
+    --purple:#9B5DE5;
+    --muted:#8C7FA0;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(circle at 20% 0%, #2A1D38 0%, var(--bg) 55%);
+    color:var(--cream);
+    font-family:'Nunito',sans-serif;
+    min-height:100vh;
+    padding:32px 16px 64px;
+  }
+  .app{ width:100%; max-width:920px; margin:0 auto; }
+
+  .brand{ text-align:center; margin-bottom:22px; }
+  .brand-logo{
+    width:100%; max-width:360px; height:auto; border-radius:14px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4); margin:0 auto;
+  }
+  .brand p{ margin:12px 0 0; color:var(--cream-dim); font-weight:700; font-size:0.95rem; }
+  .back-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 16px; margin-bottom:18px; }
+  .back-links a{ color:var(--cream-dim); font-size:0.85rem; font-weight:700; text-decoration:none; }
+  .back-links a:hover{ color:var(--yellow); }
+
+  .hero{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:28px 24px; text-align:center; margin-bottom:20px; box-shadow:0 20px 50px rgba(0,0,0,0.35);
+  }
+  .hero h2{ font-family:'Bungee',cursive; font-size:1.3rem; line-height:1.5; margin:0 0 10px; }
+  .hero p{ color:var(--cream-dim); font-size:0.92rem; line-height:1.6; margin:0 0 14px; }
+  .hero p:last-child{ margin-bottom:0; }
+  .hero .quote-link{ color:var(--yellow); font-weight:800; text-decoration:none; }
+  .hero .quote-link:hover{ text-decoration:underline; }
+
+  .btn-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .btn-primary{
+    display:inline-block; background:linear-gradient(90deg,var(--red),var(--orange)); color:#1A1220;
+    font-family:'Bungee',cursive; font-size:0.8rem; letter-spacing:0.5px; text-decoration:none;
+    padding:14px 22px; border-radius:12px; transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(230,57,74,0.35); }
+  .btn-social{
+    display:inline-block; background:var(--bg-alt2); border:2px solid #3A2A4A; color:var(--cream);
+    font-weight:800; font-size:0.82rem; text-decoration:none; padding:12px 18px; border-radius:12px;
+    transition:all 0.15s ease;
+  }
+  .btn-social:hover{ border-color:var(--orange); transform:translateY(-1px); }
+
+  .tab-bar{
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:20px;
+  }
+  .tab-btn{
+    font-family:'Bungee',cursive; font-size:0.72rem; letter-spacing:0.3px; color:var(--cream-dim);
+    background:var(--bg-alt); border:2px solid #3A2A4A; border-radius:14px; padding:12px 16px;
+    cursor:pointer; transition:all 0.15s ease; line-height:1.3;
+  }
+  .tab-btn:hover{ border-color:var(--orange); color:var(--cream); }
+  .tab-btn.active{
+    background:linear-gradient(90deg,var(--red),var(--orange)); border-color:transparent; color:#1A1220;
+  }
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
+  .tab-intro{ color:var(--cream-dim); font-size:0.88rem; line-height:1.6; margin:0 0 16px; text-align:center; }
+
+  .package-card{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:22px 22px; margin-bottom:16px;
+  }
+  .package-head{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px; }
+  .package-head h3{ font-family:'Bungee',cursive; font-size:1rem; margin:0; color:var(--cream); }
+  .package-price{ font-family:'Bungee',cursive; font-size:1.1rem; color:var(--yellow); white-space:nowrap; }
+  .package-includes{ margin:0; padding-left:20px; color:var(--cream-dim); font-size:0.88rem; line-height:1.7; }
+  .package-includes li{ margin-bottom:4px; }
+
+  .coming-soon{
+    background:var(--bg-alt); border:1px dashed #4A3A5A; border-radius:var(--radius);
+    padding:44px 24px; text-align:center; margin-bottom:18px;
+  }
+  .coming-soon .icon{ font-size:2rem; margin-bottom:12px; }
+  .coming-soon h3{ font-family:'Bungee',cursive; font-size:1rem; margin:0 0 10px; color:var(--cream); }
+  .coming-soon p{ color:var(--cream-dim); font-size:0.88rem; line-height:1.65; margin:0 auto; max-width:420px; }
+  .coming-soon p a{ color:var(--yellow); font-weight:800; text-decoration:none; }
+  .coming-soon p a:hover{ text-decoration:underline; }
+
+  .toolbar{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.3);
+  }
+  .search-wrap{ position:relative; margin-bottom:14px; }
+  .search-wrap input{
+    width:100%; background:var(--bg-alt2); border:2px solid #3A2A4A; border-radius:12px;
+    color:var(--cream); font-family:'Nunito',sans-serif; font-weight:700; font-size:0.95rem;
+    padding:12px 16px 12px 40px; outline:none; transition:border-color 0.15s ease;
+  }
+  .search-wrap input::placeholder{ color:var(--cream-dim); font-weight:600; }
+  .search-wrap input:focus{ border-color:var(--orange); }
+  .search-wrap .ico{ position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--cream-dim); }
+  .cat-chips{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .cat-chips + .cat-chips{ margin-top:10px; padding-top:10px; border-top:1px solid #3A2A4A; }
+  .filter-label{ font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--cream-dim); margin-right:2px; display:inline-flex; align-items:center; gap:5px; }
+  .info-btn{
+    width:16px; height:16px; border-radius:50%; background:var(--bg-alt2); border:1px solid var(--muted);
+    color:var(--cream-dim); font-family:'Nunito',sans-serif; font-size:0.62rem; font-weight:900;
+    display:inline-flex; align-items:center; justify-content:center; cursor:pointer; line-height:1;
+    padding:0; margin-right:4px; flex-shrink:0; transition:all 0.15s ease;
+  }
+  .info-btn:hover{ border-color:var(--yellow); color:var(--yellow); }
+  .cat-chip{
+    font-size:0.76rem; font-weight:800; padding:7px 13px; border-radius:20px; border:2px solid transparent;
+    cursor:pointer; transition:all 0.15s ease; color:var(--cream); background:var(--bg-alt2);
+  }
+  .cat-chip:hover{ transform:translateY(-1px); }
+  .cat-chip.active{ border-color:var(--cream); }
+  .mechanic-select{
+    font-size:0.76rem; font-weight:800; padding:7px 13px; border-radius:20px; border:2px solid transparent;
+    cursor:pointer; color:var(--cream); background:var(--bg-alt2); font-family:'Nunito',sans-serif;
+    outline:none; transition:all 0.15s ease;
+  }
+  .mechanic-select:hover{ transform:translateY(-1px); }
+  .mechanic-select:focus{ border-color:var(--cream); }
+  .mechanic-select option{ background:var(--bg-alt2); color:var(--cream); }
+  .result-count{ text-align:center; color:var(--cream-dim); font-size:0.82rem; font-weight:700; margin-bottom:14px; }
+
+  .badge{
+    display:inline-block; font-size:0.65rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:0.5px; padding:3px 9px; border-radius:12px; line-height:1.4;
+  }
+
+  @keyframes swipe-hint{
+    0%,100%{ transform:translateX(0); }
+    50%{ transform:translateX(6px); }
+  }
+  .scroll-hint{
+    display:none; align-items:center; justify-content:center; gap:8px;
+    color:var(--cream-dim); font-size:0.8rem; font-weight:800; margin-bottom:10px; text-align:center;
+  }
+  .scroll-hint.visible{ display:flex; }
+  .scroll-hint .arrow{ display:inline-block; color:var(--yellow); font-size:1rem; animation:swipe-hint 1.4s ease-in-out infinite; }
+
+  .rate-table-outer{ position:relative; margin-bottom:26px; }
+  .rate-table-wrap{
+    overflow:auto; max-height:min(640px, 65vh); background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    position:relative; z-index:0;
+  }
+  .scroll-fade{
+    position:absolute; top:1px; bottom:1px; width:32px; pointer-events:none; z-index:5;
+    opacity:0; transition:opacity 0.2s ease;
+  }
+  .scroll-fade-left{
+    left:1px; border-radius:calc(var(--radius) - 1px) 0 0 calc(var(--radius) - 1px);
+    background:linear-gradient(to right, var(--bg-alt), rgba(36,26,48,0));
+  }
+  .scroll-fade-right{
+    right:1px; border-radius:0 calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0;
+    background:linear-gradient(to left, var(--bg-alt), rgba(36,26,48,0));
+  }
+  .scroll-fade::after{
+    content:''; position:absolute; top:50%; transform:translateY(-50%);
+    color:var(--yellow); font-size:1.3rem; font-weight:900; line-height:1;
+  }
+  .scroll-fade-left::after{ content:'‹'; left:2px; }
+  .scroll-fade-right::after{ content:'›'; right:2px; }
+  table.rate-table{ width:100%; min-width:960px; border-collapse:separate; border-spacing:0; font-size:0.87rem; table-layout:fixed; }
+  table.rate-table th{
+    text-align:left; padding:12px 14px; border-bottom:1px solid #3A2A4A; background:var(--bg-alt2);
+    color:var(--cream); font-weight:800; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.5px;
+    white-space:nowrap;
+    position:sticky; top:0; z-index:4;
+    isolation:isolate; will-change:transform;
+  }
+  table.rate-table th.tnum{ text-align:right; }
+  table.rate-table td{ padding:11px 14px; border-bottom:1px solid #3A2A4A; color:var(--cream-dim); vertical-align:middle; }
+  table.rate-table tbody tr:last-child td{ border-bottom:none; }
+  table.rate-table tbody tr:hover td{ background:var(--bg-alt2); }
+  table.rate-table td.gname{ color:var(--cream); font-weight:800; }
+  table.rate-table td.players{ font-size:0.82rem; }
+  table.rate-table td.ptype{ font-size:0.82rem; }
+  table.rate-table td.mechanic{ font-size:0.82rem; }
+  .badge.duration-light{ background:var(--green); color:#12241A; }
+  .badge.duration-medium{ background:var(--orange); color:#1A1220; }
+  .badge.duration-heavy{ background:var(--red); color:var(--cream); }
+  table.rate-table td.tnum{ text-align:right; font-weight:900; color:var(--yellow); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  table.rate-table td.quote-cell{ color:var(--cream-dim); font-size:0.85rem; }
+  table.rate-table td.quote-cell a{ color:var(--yellow); font-weight:800; text-decoration:none; }
+  table.rate-table td.quote-cell a:hover{ text-decoration:underline; }
+
+  .detail-toggle{
+    display:inline-flex; align-items:center; gap:3px; background:none; border:none; cursor:pointer;
+    color:var(--cream-dim); font-family:'Nunito',sans-serif; font-weight:800; font-size:0.7rem;
+    padding:0; margin-left:8px; vertical-align:middle;
+  }
+  .detail-toggle:hover{ color:var(--yellow); }
+  .detail-toggle .chevron{ display:inline-block; transition:transform 0.2s ease; font-size:0.65rem; }
+  .detail-toggle[aria-expanded="true"] .chevron{ transform:rotate(180deg); }
+  tr.detail-row td{
+    padding:10px 14px 16px 14px; border-bottom:1px solid #3A2A4A; background:var(--bg-alt);
+    color:var(--cream-dim); font-size:0.85rem; line-height:1.6; white-space:normal;
+  }
+  tr.detail-row:last-child td{ border-bottom:none; }
+  .detail-meta{ display:flex; flex-wrap:wrap; gap:6px 14px; margin-bottom:8px; }
+  .detail-meta span{
+    font-size:0.76rem; font-weight:700; color:var(--cream-dim); white-space:nowrap;
+  }
+  .detail-meta span strong{ color:var(--cream); font-weight:800; }
+
+  .empty-state{ text-align:center; color:var(--cream-dim); padding:40px 16px; font-weight:700; }
+
+  .note-box{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:18px; font-size:0.85rem; color:var(--cream-dim); line-height:1.6;
+    border-left:4px solid var(--purple);
+  }
+
+  .footer-cta{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius);
+    padding:26px 22px; text-align:center;
+  }
+  .footer-cta h3{ font-family:'Bungee',cursive; font-size:1.05rem; margin:0 0 10px; }
+  .footer-cta p{ color:var(--cream-dim); font-size:0.88rem; line-height:1.6; margin:0 0 16px; }
+  .legal-note{ margin-top:18px; font-size:0.76rem; color:var(--muted); line-height:1.6; }
+
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(10,6,14,0.72); display:flex; align-items:center;
+    justify-content:center; z-index:50; padding:20px;
+  }
+  .modal-card{
+    background:var(--bg-alt); border:1px solid #3A2A4A; border-radius:var(--radius); max-width:480px;
+    width:100%; max-height:80vh; overflow:auto; padding:24px; box-shadow:0 30px 70px rgba(0,0,0,0.5);
+  }
+  .modal-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+  .modal-card h3{ font-family:'Bungee',cursive; font-size:1.05rem; margin:0 0 4px; }
+  .modal-sub{ color:var(--cream-dim); font-size:0.82rem; margin:0; line-height:1.5; }
+  .modal-close{
+    background:none; border:none; color:var(--cream-dim); font-size:1.5rem; cursor:pointer;
+    line-height:1; padding:0 0 0 8px; flex-shrink:0;
+  }
+  .modal-close:hover{ color:var(--yellow); }
+  .glossary-item{ display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-top:1px solid #3A2A4A; }
+  .glossary-item:first-child{ border-top:none; padding-top:16px; }
+  .glossary-item .g-badge{ flex-shrink:0; margin-top:1px; }
+  .glossary-item .g-desc{ color:var(--cream-dim); font-size:0.83rem; line-height:1.55; }
+
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="brand">
+    <img src="assets/logo-banner.png" alt="Tabletop Games To Go" class="brand-logo">
+    <p>Rates &amp; Packages</p>
+  </div>
+  <div class="back-links">
+    <a href="index.html" target="_blank" rel="noopener">← Not sure what to rent? Take the quiz</a>
+    <a href="rental-terms.html" target="_blank" rel="noopener">Rental terms &amp; policies →</a>
+  </div>
+
+  <div class="hero">
+    <h2>Rates</h2>
+    <p>Renting à la carte, booking a personal package, or planning something for your company — pick a tab below to see the rates that fit.</p>
+    <p>Curious how booking, deposits, and Game Masters work? <a class="quote-link" href="rental-terms.html" target="_blank" rel="noopener">See our Rental Terms &amp; Policies →</a></p>
+  </div>
+
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-btn active" data-tab="individual">Individual Board Games</button>
+    <button class="tab-btn" data-tab="personal">Personal Packages</button>
+    <button class="tab-btn" data-tab="company">Company Packages</button>
+  </div>
+
+  <div class="tab-panel active" id="panel-individual">
+    <p class="tab-intro">Prices below are per game, in ₱, for 1, 2, or 3-day rentals — handy if you already know what you want instead of booking a full package. Search or filter by category to find it fast.</p>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="ico">🔍</span>
+        <input type="text" id="search-input" placeholder="Search for a game..." autocomplete="off">
+      </div>
+      <div class="cat-chips" id="cat-chips"></div>
+      <div class="cat-chips" id="ptype-chips"></div>
+      <div class="cat-chips" id="mechanic-row">
+        <span class="filter-label">Mechanics</span>
+        <select class="mechanic-select" id="mechanic-select"></select>
+      </div>
+      <div class="cat-chips" id="duration-chips"></div>
+    </div>
+
+    <div class="result-count" id="result-count"></div>
+    <div class="scroll-hint" id="scroll-hint"><span class="arrow">↔</span> Scroll sideways to see all columns</div>
+    <div class="rate-table-outer">
+      <div class="rate-table-wrap" id="rate-table-wrap">
+        <table class="rate-table">
+          <colgroup>
+            <col style="width:13%">
+            <col style="width:17%">
+            <col style="width:9%">
+            <col style="width:10%">
+            <col style="width:11%">
+            <col style="width:9%">
+            <col style="width:10%">
+            <col style="width:10%">
+            <col style="width:11%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Game</th>
+              <th>Players</th>
+              <th>Player Type</th>
+              <th>Mechanics</th>
+              <th>Duration</th>
+              <th class="tnum">1 Day</th>
+              <th class="tnum">2 Days</th>
+              <th class="tnum">3 Days</th>
+            </tr>
+          </thead>
+          <tbody id="rate-tbody"></tbody>
+        </table>
+      </div>
+      <div class="scroll-fade scroll-fade-left" id="fade-left" aria-hidden="true"></div>
+      <div class="scroll-fade scroll-fade-right" id="fade-right" aria-hidden="true"></div>
+    </div>
+    <div class="empty-state" id="empty-state" style="display:none;">No games match your search — try a different title or category, or <a href="#" style="color:var(--yellow);font-weight:800;" onclick="document.getElementById('search-input').value='';document.getElementById('search-input').dispatchEvent(new Event('input'));return false;">clear your search</a>.</div>
+
+    <div class="note-box">
+      Rates with no price yet are marked "Ask us for a quote" — usually a bundle or a brand-new arrival we haven't priced individually. Message us and we'll confirm the rate.
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-personal">
+    <p class="tab-intro">Bundle up a few titles (with or without a Game Master) for your own game night.</p>
+    <div class="coming-soon">
+      <div class="icon">🎲</div>
+      <h3>Personal Bundles</h3>
+      <p>Curated Main + Lights combos for every occasion, category, player type, and fandom — tick the games you want right on the page.</p>
+      <p><a class="quote-link" href="rental-bundles-personal.html">Browse Personal Bundles →</a></p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-company">
+    <p class="tab-intro">Team-building nights, office events, or client entertainment — packages built for groups.</p>
+    <div class="coming-soon">
+      <div class="icon">🏢</div>
+      <h3>Corporate &amp; Group Bundles</h3>
+      <p>Same curated bundles, tuned for offices and organizations — every corporate booking includes a Game Master.</p>
+      <p><a class="quote-link" href="rental-bundles-corporate.html">Browse Corporate &amp; Group Bundles →</a></p>
+    </div>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Ready to Book?</h3>
+    <p>Message us on Facebook, Instagram, or TikTok, or fill out our booking form directly and we'll bring the games to you.</p>
+    <div class="btn-row">
+      <a class="btn-primary" data-href-field="bookingFormUrl" href="#" target="_blank" rel="noopener">BOOK A RENTAL →</a>
+    </div>
+    <div class="btn-row" style="margin-top:12px;">
+      <a class="btn-social" data-href-field="facebookUrl" href="#" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn-social" data-href-field="instagramUrl" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn-social" data-href-field="tiktokUrl" href="#" target="_blank" rel="noopener">TikTok</a>
+    </div>
+    <div class="legal-note">Rates shown are for the game only. See our <a href="rental-terms.html" style="color:var(--muted);">Rental Terms &amp; Policies</a> for deposits, delivery, and Game Master add-ons.</div>
+  </div>
+
+  <div class="modal-overlay" id="glossary-modal" style="display:none;" onclick="if(event.target===this) closeGlossary();">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h3 id="glossary-title"></h3>
+          <p class="modal-sub" id="glossary-sub"></p>
+        </div>
+        <button class="modal-close" onclick="closeGlossary()" aria-label="Close">&times;</button>
+      </div>
+      <div id="glossary-list"></div>
+    </div>
+  </div>
+
+</div>
+<script src="site-config.js"></script>
+<script src="board-games-data.js"></script>
+<script>
+// ---------- DATA — shared with index.html via board-games-data.js. ----------
+const RATES = BoardGamesData.BOARD_GAMES;
+const CAT_COLORS = BoardGamesData.CATEGORY_COLORS;
+const CATEGORIES = Object.keys(CAT_COLORS);
+// Same palette as the quiz's four archetypes (index.html's dieColors) so the two pages read as one system.
+const PTYPE_COLORS = {
+  "The Architects":   {bg:"#9B5DE5", fg:"#F7F1E6"},
+  "The Conquerors":   {bg:"#E6394A", fg:"#F7F1E6"},
+  "The Dreamweavers": {bg:"#4FB477", fg:"#12241A"},
+  "The Connectors":   {bg:"#FFD23F", fg:"#1A1220"},
+};
+const PLAYER_TYPES = Object.keys(PTYPE_COLORS);
+const DURATION_COLORS = {
+  "Light":  {bg:"#4FB477", fg:"#12241A"},
+  "Medium": {bg:"#F4A259", fg:"#1A1220"},
+  "Heavy":  {bg:"#E6394A", fg:"#F7F1E6"},
+};
+const DURATIONS = Object.keys(DURATION_COLORS);
+const MECHANICS = [...new Set(RATES.map(g => g.primaryMechanic).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+
+// ---------- GLOSSARY — plain-language meanings shown in the "i" popovers ----------
+const CATEGORY_DESCRIPTIONS = {
+  "Strategy Showcase":             "Meatier strategy games for players who like to plan several moves ahead.",
+  "Family & Accessible Strategy":  "Real strategic depth that's still easy to teach — great for mixed-experience groups.",
+  "Cooperative Missions":          "Everyone's on the same team, working together against the game itself.",
+  "Bluffing & Social Deduction":   "Reading the table, hiding your role, and calling out the liars.",
+  "Party & Group Fun":             "Loud, fast, and built for a crowd — the classic party-night pick.",
+  "Quick Card & Tabletop Fillers": "Short, low-fuss card and dice games — perfect for warming up or filling a gap.",
+  "Unmatched Battle Arena":        "Head-to-head tactical combat from the Unmatched series — pick a fighter and go to war.",
+};
+const PLAYER_TYPE_DESCRIPTIONS = {
+  "The Architects":   "Strategic planners who love a real system to master — they see three moves ahead.",
+  "The Conquerors":   "Competitive players who play to win and want the table to remember it.",
+  "The Dreamweavers": "Story-and-immersion players who want a game to feel like a world, not just a game.",
+  "The Connectors":   "Social players who show up for the people at the table as much as the game itself.",
+};
+const DURATION_DESCRIPTIONS = {
+  "Light":  "Quick and easy — the shortest, lowest-fuss games in our library.",
+  "Medium": "A solid middle ground — a bit more meat than a filler, still moves at a good pace.",
+  "Heavy":  "Our longest or most involved games — more rules, more depth, more table time.",
+};
+const GLOSSARY = {
+  category: {
+    title: "Categories",
+    sub: "What kind of game you're picking up.",
+    items: CATEGORIES.map(cat => ({ label: cat, color: CAT_COLORS[cat], desc: CATEGORY_DESCRIPTIONS[cat] })),
+  },
+  playerType: {
+    title: "Player Types",
+    sub: "Which of our four quiz archetypes a game fits best — take the quiz to find yours.",
+    items: PLAYER_TYPES.map(pt => ({ label: pt, color: PTYPE_COLORS[pt], desc: PLAYER_TYPE_DESCRIPTIONS[pt] })),
+  },
+  duration: {
+    title: "Duration",
+    sub: "How long a session tends to run.",
+    items: DURATIONS.map(d => ({ label: d, color: DURATION_COLORS[d], desc: DURATION_DESCRIPTIONS[d] })),
+  },
+};
+
+function openGlossary(key){
+  const g = GLOSSARY[key];
+  document.getElementById('glossary-title').textContent = g.title;
+  document.getElementById('glossary-sub').textContent = g.sub;
+  document.getElementById('glossary-list').innerHTML = g.items.map(it => `
+    <div class="glossary-item">
+      <span class="badge g-badge" style="background:${it.color.bg};color:${it.color.fg};">${it.label}</span>
+      <div class="g-desc">${it.desc}</div>
+    </div>
+  `).join('');
+  document.getElementById('glossary-modal').style.display = 'flex';
+}
+function closeGlossary(){
+  document.getElementById('glossary-modal').style.display = 'none';
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeGlossary(); });
+
+// ---------- STATE ----------
+let activeCategory = "All";
+let activePlayerType = "All";
+let activeMechanic = "All";
+let activeDuration = "All";
+let searchTerm = "";
+const expandedGames = new Set(); // game names with their detail row open, persists across re-filters
+
+function formatPeso(n){
+  return "₱" + n.toLocaleString("en-PH");
+}
+
+function makeInfoBtn(glossaryKey, ariaLabel){
+  const btn = document.createElement('button');
+  btn.className = 'info-btn';
+  btn.type = 'button';
+  btn.textContent = 'i';
+  btn.setAttribute('aria-label', ariaLabel);
+  btn.onclick = (e) => { e.stopPropagation(); openGlossary(glossaryKey); };
+  return btn;
+}
+
+function renderChips(){
+  const wrap = document.getElementById('cat-chips');
+  wrap.innerHTML = '';
+  const label = document.createElement('span');
+  label.className = 'filter-label';
+  label.textContent = 'Category';
+  wrap.appendChild(label);
+  wrap.appendChild(makeInfoBtn('category', 'What do the categories mean?'));
+
+  const allChip = document.createElement('button');
+  allChip.className = 'cat-chip' + (activeCategory === 'All' ? ' active' : '');
+  allChip.textContent = 'All Games';
+  allChip.style.background = 'var(--bg-alt2)';
+  allChip.onclick = () => { activeCategory = 'All'; renderChips(); renderGrid(); };
+  wrap.appendChild(allChip);
+
+  CATEGORIES.forEach(cat => {
+    const c = CAT_COLORS[cat];
+    const chip = document.createElement('button');
+    chip.className = 'cat-chip' + (activeCategory === cat ? ' active' : '');
+    chip.textContent = cat;
+    chip.style.background = c.bg;
+    chip.style.color = c.fg;
+    chip.onclick = () => { activeCategory = cat; renderChips(); renderGrid(); };
+    wrap.appendChild(chip);
+  });
+}
+
+function renderPlayerTypeChips(){
+  const wrap = document.getElementById('ptype-chips');
+  wrap.innerHTML = '';
+  const label = document.createElement('span');
+  label.className = 'filter-label';
+  label.textContent = 'Player Type';
+  wrap.appendChild(label);
+  wrap.appendChild(makeInfoBtn('playerType', 'What do the player types mean?'));
+
+  const allChip = document.createElement('button');
+  allChip.className = 'cat-chip' + (activePlayerType === 'All' ? ' active' : '');
+  allChip.textContent = 'All';
+  allChip.style.background = 'var(--bg-alt2)';
+  allChip.onclick = () => { activePlayerType = 'All'; renderPlayerTypeChips(); renderGrid(); };
+  wrap.appendChild(allChip);
+
+  PLAYER_TYPES.forEach(pt => {
+    const c = PTYPE_COLORS[pt];
+    const chip = document.createElement('button');
+    chip.className = 'cat-chip' + (activePlayerType === pt ? ' active' : '');
+    chip.textContent = pt;
+    chip.style.background = c.bg;
+    chip.style.color = c.fg;
+    chip.onclick = () => { activePlayerType = pt; renderPlayerTypeChips(); renderGrid(); };
+    wrap.appendChild(chip);
+  });
+}
+
+function renderMechanicSelect(){
+  const sel = document.getElementById('mechanic-select');
+  sel.innerHTML = '';
+  const allOpt = document.createElement('option');
+  allOpt.value = 'All';
+  allOpt.textContent = 'All Mechanics';
+  sel.appendChild(allOpt);
+  MECHANICS.forEach(m => {
+    const opt = document.createElement('option');
+    opt.value = m;
+    opt.textContent = m;
+    sel.appendChild(opt);
+  });
+  sel.value = activeMechanic;
+  sel.onchange = () => { activeMechanic = sel.value; renderGrid(); };
+}
+
+function renderDurationChips(){
+  const wrap = document.getElementById('duration-chips');
+  wrap.innerHTML = '';
+  const label = document.createElement('span');
+  label.className = 'filter-label';
+  label.textContent = 'Duration';
+  wrap.appendChild(label);
+  wrap.appendChild(makeInfoBtn('duration', 'What does duration mean?'));
+
+  const allChip = document.createElement('button');
+  allChip.className = 'cat-chip' + (activeDuration === 'All' ? ' active' : '');
+  allChip.textContent = 'All';
+  allChip.style.background = 'var(--bg-alt2)';
+  allChip.onclick = () => { activeDuration = 'All'; renderDurationChips(); renderGrid(); };
+  wrap.appendChild(allChip);
+
+  DURATIONS.forEach(d => {
+    const c = DURATION_COLORS[d];
+    const chip = document.createElement('button');
+    chip.className = 'cat-chip' + (activeDuration === d ? ' active' : '');
+    chip.textContent = d;
+    chip.style.background = c.bg;
+    chip.style.color = c.fg;
+    chip.onclick = () => { activeDuration = d; renderDurationChips(); renderGrid(); };
+    wrap.appendChild(chip);
+  });
+}
+
+function renderGrid(){
+  const tbody = document.getElementById('rate-tbody');
+  const empty = document.getElementById('empty-state');
+  const countEl = document.getElementById('result-count');
+  tbody.innerHTML = '';
+
+  const term = searchTerm.trim().toLowerCase();
+  const filtered = RATES.filter(g => {
+    const matchesCat = activeCategory === 'All' || g.category === activeCategory;
+    const matchesPType = activePlayerType === 'All' || g.playerType === activePlayerType;
+    const matchesMechanic = activeMechanic === 'All' || g.primaryMechanic === activeMechanic;
+    const matchesDuration = activeDuration === 'All' || g.tgtgDuration === activeDuration;
+    const matchesSearch = !term || g.name.toLowerCase().includes(term);
+    return matchesCat && matchesPType && matchesMechanic && matchesDuration && matchesSearch;
+  });
+
+  const filterBits = [
+    activeCategory !== 'All' ? activeCategory : '',
+    activePlayerType !== 'All' ? activePlayerType : '',
+    activeMechanic !== 'All' ? activeMechanic : '',
+    activeDuration !== 'All' ? activeDuration + ' duration' : '',
+  ].filter(Boolean);
+  countEl.textContent = filtered.length + (filtered.length === 1 ? ' game' : ' games') +
+    (filterBits.length ? ' — ' + filterBits.join(', ') : '');
+
+  if(!filtered.length){
+    empty.style.display = 'block';
+    document.querySelector('.rate-table-outer').style.display = 'none';
+    document.getElementById('scroll-hint').classList.remove('visible');
+    return;
+  }
+  empty.style.display = 'none';
+  document.querySelector('.rate-table-outer').style.display = '';
+
+  filtered.forEach(g => {
+    const c = CAT_COLORS[g.category] || CAT_COLORS["Uncategorized / New Arrival"];
+    const row = document.createElement('tr');
+
+    const hasRate = g.d1 > 0 || g.d2 > 0 || g.d3 > 0;
+    const isOpen = expandedGames.has(g.name);
+
+    row.innerHTML = `
+      <td><span class="badge" style="background:${c.bg};color:${c.fg};">${g.category}</span></td>
+      <td class="gname">${g.name}${g.description ? `
+        <button class="detail-toggle" data-name="${g.name.replace(/"/g, '&quot;')}" aria-expanded="${isOpen}">
+          <span class="chevron">▾</span> Details
+        </button>
+      ` : ''}</td>
+      <td class="players">${g.players || '—'}</td>
+      <td class="ptype">${g.playerType || '—'}</td>
+      <td class="mechanic">${g.primaryMechanic || '—'}</td>
+      <td>${g.tgtgDuration ? `<span class="badge duration-${g.tgtgDuration.toLowerCase()}">${g.tgtgDuration}</span>` : '—'}</td>
+      ${hasRate ? `
+        <td class="tnum">${formatPeso(g.d1)}</td>
+        <td class="tnum">${formatPeso(g.d2)}</td>
+        <td class="tnum">${formatPeso(g.d3)}</td>
+      ` : `
+        <td class="quote-cell" colspan="3">Not yet priced individually — <a data-href-field="facebookUrl" href="#" target="_blank" rel="noopener">message us for a quote →</a></td>
+      `}
+    `;
+    tbody.appendChild(row);
+
+    if (g.description && isOpen) {
+      const detailRow = document.createElement('tr');
+      detailRow.className = 'detail-row';
+      const meta = [
+        g.durationExperience ? `<span>⏱ <strong>${g.durationExperience}</strong></span>` : '',
+        g.gameType ? `<span>🎲 <strong>${g.gameType}</strong></span>` : '',
+      ].filter(Boolean).join('');
+      detailRow.innerHTML = `<td colspan="9">${meta ? `<div class="detail-meta">${meta}</div>` : ''}${g.description}</td>`;
+      tbody.appendChild(detailRow);
+    }
+  });
+
+  SiteConfig.applySiteConfig(document, SiteConfig.SITE);
+  updateScrollFades();
+}
+
+// Makes horizontal scrollability obvious on mobile: shows a "scroll sideways" hint
+// and left/right edge fades, updating live as the user scrolls the table.
+function updateScrollFades(){
+  const wrap = document.getElementById('rate-table-wrap');
+  const hint = document.getElementById('scroll-hint');
+  const fadeLeft = document.getElementById('fade-left');
+  const fadeRight = document.getElementById('fade-right');
+  const canScroll = wrap.scrollWidth > wrap.clientWidth + 1;
+  hint.classList.toggle('visible', canScroll);
+  fadeLeft.style.opacity = (canScroll && wrap.scrollLeft > 4) ? '1' : '0';
+  fadeRight.style.opacity = (canScroll && wrap.scrollLeft < wrap.scrollWidth - wrap.clientWidth - 4) ? '1' : '0';
+}
+document.getElementById('rate-table-wrap').addEventListener('scroll', updateScrollFades);
+window.addEventListener('resize', updateScrollFades);
+
+// Delegated so it keeps working after renderGrid() replaces the rows.
+document.getElementById('rate-tbody').addEventListener('click', (e) => {
+  const btn = e.target.closest('.detail-toggle');
+  if (!btn) return;
+  const name = btn.dataset.name;
+  if (expandedGames.has(name)) expandedGames.delete(name);
+  else expandedGames.add(name);
+  renderGrid();
+});
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+  searchTerm = e.target.value;
+  renderGrid();
+});
+
+document.getElementById('tab-bar').addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  const tab = btn.dataset.tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+  if (tab === 'individual') updateScrollFades();
+});
+
+SiteConfig.applySiteConfig(document, SiteConfig.SITE);
+renderChips();
+renderPlayerTypeChips();
+renderMechanicSelect();
+renderDurationChips();
+renderGrid();
+</script>
+</body>
+</html>

@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Individual Rental Form — TableTop Games To Go</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF6EF;
+    --bg-alt:#FFFFFF;
+    --bg-alt2:#F2ECDE;
+    --ink:#20182A;
+    --ink-dim:#453A54;
+    --red:#E6394A;
+    --orange:#F4A259;
+    --yellow:#FFD23F;
+    --green:#4FB477;
+    --purple:#9B5DE5;
+    --muted:#6B5E7D;
+    --border:#E4DCEE;
+    --price:#9C5515;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{ font-size:17.5px; }
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(circle at 20% 0%, #FFFFFF 0%, var(--bg) 60%);
+    color:var(--ink);
+    font-family:'Nunito',sans-serif;
+    min-height:100vh;
+    padding:32px 16px 64px;
+  }
+  .app{ width:100%; max-width:980px; margin:0 auto; }
+
+  .brand{ text-align:center; margin-bottom:22px; }
+  .brand-logo{
+    width:100%; max-width:360px; height:auto; border-radius:14px;
+    box-shadow:0 10px 25px rgba(39,31,48,0.18); margin:0 auto;
+  }
+  .brand p{ margin:12px 0 0; color:var(--ink-dim); font-weight:700; font-size:0.95rem; }
+  .back-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 16px; margin-bottom:18px; }
+  .back-links a{ color:var(--ink-dim); font-size:0.85rem; font-weight:700; text-decoration:none; }
+  .back-links a:hover{ color:var(--red); }
+
+  .hero{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:28px 24px; text-align:center; margin-bottom:20px; box-shadow:0 16px 36px rgba(39,31,48,0.08);
+  }
+  .hero h2{ font-family:'Bungee',cursive; font-size:1.3rem; line-height:1.5; margin:0 0 10px; }
+  .hero p{ color:var(--ink-dim); font-size:0.92rem; line-height:1.6; margin:0 0 14px; }
+  .hero p:last-child{ margin-bottom:0; }
+  .hero strong{ color:var(--ink); }
+  .hero a{ color:var(--price); font-weight:800; text-decoration:none; }
+  .hero a:hover{ text-decoration:underline; }
+
+  .btn-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .btn-primary{
+    display:inline-block; background:linear-gradient(90deg,#E8899A,#F4C08C); color:#3A2430;
+    font-family:'Bungee',cursive; font-size:0.8rem; letter-spacing:0.5px; text-decoration:none;
+    padding:14px 22px; border-radius:12px; border:none; cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(232,137,154,0.35); }
+
+  .details-box{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:18px;
+  }
+  .details-box h3{ font-family:'Bungee',cursive; font-size:0.9rem; color:var(--ink); margin:0 0 14px; }
+  .req{ color:var(--red); font-weight:800; }
+  .required-note{ font-family:'Nunito',sans-serif; font-size:0.7rem; font-weight:700; color:var(--muted); text-transform:none; letter-spacing:0; }
+  .details-grid{ display:flex; flex-wrap:wrap; gap:14px 22px; margin-bottom:14px; }
+  .details-field{ flex:1; min-width:220px; }
+  .details-field label{ display:block; font-size:0.78rem; color:var(--ink-dim); margin-bottom:5px; font-weight:700; }
+  .details-field input[type="text"], .details-field input[type="date"]{
+    width:100%; background:var(--bg-alt2); border:2px solid var(--border); border-radius:10px;
+    color:var(--ink); font-family:'Nunito',sans-serif; font-weight:600; font-size:0.9rem;
+    padding:10px 12px; outline:none; transition:border-color 0.15s ease;
+  }
+  .details-field input[type="text"]:focus, .details-field input[type="date"]:focus{ border-color:var(--orange); }
+  .rlen-row{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 22px; }
+  .rlen-row > strong{ font-size:0.82rem; color:var(--ink-dim); }
+  .rlen-option{ display:flex; align-items:center; gap:6px; font-size:0.85rem; font-weight:700; cursor:pointer; }
+  .rlen-option input{ width:16px; height:16px; cursor:pointer; accent-color:var(--purple); }
+
+  .legend-box{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:18px; font-size:0.85rem; color:var(--ink-dim); line-height:1.6;
+  }
+  .legend-box h3{ font-family:'Bungee',cursive; font-size:0.9rem; color:var(--ink); margin:0 0 10px; }
+  .legend-box h4{ font-family:'Bungee',cursive; font-size:0.82rem; color:var(--ink); margin:16px 0 8px; }
+  .legend-box p{ margin:0 0 8px; }
+  .legend-box p:last-child{ margin-bottom:0; }
+  .muted-note{ font-size:0.82rem; color:var(--muted); font-style:italic; }
+
+  .swatch-row{ display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
+  .swatch-row:last-child{ margin-bottom:0; }
+  .swatch-badge{
+    flex-shrink:0; display:inline-block; min-width:76px; text-align:center;
+    font-size:0.68rem; font-weight:800; padding:5px 10px; border-radius:20px; white-space:nowrap;
+  }
+  .swatch-desc{ font-size:0.84rem; line-height:1.5; padding-top:3px; }
+  .cat-list{ display:flex; flex-direction:column; gap:7px; }
+  .cat-list-item{ display:flex; align-items:center; gap:10px; font-size:0.86rem; }
+  .cat-sw{ display:inline-block; width:13px; height:13px; border-radius:4px; flex-shrink:0; }
+
+  .spine-grid{ display:flex; flex-direction:column; gap:10px; margin:14px 0; }
+  .spine-box{
+    background:var(--bg-alt2); border-radius:12px; padding:12px 16px;
+  }
+  .spine-day{ font-family:'Bungee',cursive; font-size:0.86rem; color:var(--ink); margin-bottom:6px; }
+  .spine-opt{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:0.84rem; font-weight:700; margin-bottom:4px; }
+  .spine-opt:last-child{ margin-bottom:0; }
+  .spine-or{ font-size:0.76rem; color:var(--muted); font-style:italic; margin:0 2px 0 0; }
+  .badge-pill{
+    display:inline-block; font-size:0.66rem; font-weight:800; padding:3px 9px; border-radius:12px;
+    white-space:nowrap; text-transform:uppercase; letter-spacing:0.3px;
+  }
+
+  /* ---------- toolbar + table, ported from game-rates.html's filterable ---------- */
+  /* table: the toolbar itself is a normal in-flow box (no position:sticky —
+     "no floating" per the game-rates pattern); only the table's own <th> row
+     sticks, and only within its own bounded, internally-scrolling box. */
+  .toolbar{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:18px; box-shadow:0 12px 30px rgba(39,31,48,0.08);
+  }
+  .search-wrap{ position:relative; margin-bottom:14px; }
+  .search-wrap input{
+    width:100%; background:var(--bg-alt2); border:2px solid var(--border); border-radius:12px;
+    color:var(--ink); font-family:'Nunito',sans-serif; font-weight:700; font-size:0.95rem;
+    padding:12px 16px 12px 40px; outline:none; transition:border-color 0.15s ease;
+  }
+  .search-wrap input::placeholder{ color:var(--muted); font-weight:600; }
+  .search-wrap input:focus{ border-color:var(--orange); }
+  .search-wrap .ico{ position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--muted); }
+  .cat-chips{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .cat-chips + .cat-chips{ margin-top:10px; padding-top:10px; border-top:1px solid var(--border); }
+  .filter-label{ font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-right:2px; }
+  .cat-chip{
+    font-size:0.76rem; font-weight:800; padding:7px 13px; border-radius:20px; border:2px solid transparent;
+    cursor:pointer; transition:all 0.15s ease; color:var(--ink); background:var(--bg-alt2);
+  }
+  .cat-chip:hover{ transform:translateY(-1px); }
+  .cat-chip.active{ border-color:var(--ink); }
+  .mechanic-select{
+    font-size:0.76rem; font-weight:800; padding:7px 13px; border-radius:20px; border:2px solid transparent;
+    cursor:pointer; color:var(--ink); background:var(--bg-alt2); font-family:'Nunito',sans-serif;
+    outline:none; transition:all 0.15s ease;
+  }
+  .mechanic-select:focus{ border-color:var(--ink); }
+
+  .result-row{ display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px 16px; margin-bottom:14px; }
+  .result-count{ text-align:center; color:var(--ink-dim); font-size:0.82rem; font-weight:700; }
+  .picked-count{
+    font-size:0.76rem; font-weight:800; color:var(--ink); background:var(--bg-alt2);
+    border:1px solid var(--border); border-radius:20px; padding:6px 13px;
+  }
+  .clear-btn{
+    background:none; border:1px solid var(--muted); color:var(--ink-dim);
+    border-radius:20px; padding:6px 13px; font-size:0.76rem; font-weight:800; cursor:pointer;
+    font-family:'Nunito',sans-serif; transition:all 0.15s ease;
+  }
+  .clear-btn:hover{ border-color:var(--red); color:var(--red); }
+
+  @keyframes swipe-hint{ 0%,100%{ transform:translateX(0); } 50%{ transform:translateX(6px); } }
+  .scroll-hint{
+    display:none; align-items:center; justify-content:center; gap:8px;
+    color:var(--ink-dim); font-size:0.8rem; font-weight:800; margin-bottom:10px; text-align:center;
+  }
+  .scroll-hint.visible{ display:flex; }
+  .scroll-hint .arrow{ display:inline-block; color:var(--price); font-size:1rem; animation:swipe-hint 1.4s ease-in-out infinite; }
+
+  .rate-table-outer{ position:relative; margin-bottom:26px; }
+  .rate-table-wrap{
+    overflow:auto; max-height:min(640px, 65vh); background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    position:relative; z-index:0;
+  }
+  .scroll-fade{
+    position:absolute; top:1px; bottom:1px; width:32px; pointer-events:none; z-index:5;
+    opacity:0; transition:opacity 0.2s ease;
+  }
+  .scroll-fade-left{
+    left:1px; border-radius:calc(var(--radius) - 1px) 0 0 calc(var(--radius) - 1px);
+    background:linear-gradient(to right, var(--bg-alt), rgba(255,255,255,0));
+  }
+  .scroll-fade-right{
+    right:1px; border-radius:0 calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0;
+    background:linear-gradient(to left, var(--bg-alt), rgba(255,255,255,0));
+  }
+  .scroll-fade::after{
+    content:''; position:absolute; top:50%; transform:translateY(-50%);
+    color:var(--price); font-size:1.3rem; font-weight:900; line-height:1;
+  }
+  .scroll-fade-left::after{ content:'‹'; left:2px; }
+  .scroll-fade-right::after{ content:'›'; right:2px; }
+
+  table.rate-table{ width:100%; min-width:1020px; border-collapse:separate; border-spacing:0; font-size:0.84rem; table-layout:fixed; }
+  table.rate-table th{
+    text-align:left; padding:10px 12px; border-bottom:1px solid var(--border); background:var(--bg-alt2);
+    color:var(--ink); font-weight:800; font-size:0.66rem; text-transform:uppercase; letter-spacing:0.4px;
+    position:sticky; top:0; z-index:4; isolation:isolate; will-change:transform;
+  }
+  table.rate-table th.tnum{ text-align:right; }
+  table.rate-table td{ padding:8px 12px; border-bottom:1px solid var(--border); color:var(--ink-dim); vertical-align:middle; }
+  table.rate-table tbody tr:last-child td{ border-bottom:none; }
+  table.rate-table tbody tr:hover td{ background:var(--bg-alt2); }
+  table.rate-table td.cb{ width:34px; text-align:center; }
+  table.rate-table td.cb input{ width:18px; height:18px; cursor:pointer; accent-color:var(--purple); }
+  table.rate-table td.g-name{ font-weight:800; color:var(--ink); }
+  table.rate-table td.g-name label{ cursor:pointer; }
+  table.rate-table td.players, table.rate-table td.ptype, table.rate-table td.mechanic{ font-size:0.78rem; }
+  table.rate-table td.g-price{ text-align:right; font-weight:800; color:var(--price); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  table.rate-table th:nth-child(n+8){ text-align:right; }
+  table.rate-table td.quote-cell{ color:var(--muted); font-style:italic; font-size:0.8rem; }
+  tr.row-unavailable td{ opacity:0.55; }
+  tr.row-unavailable:hover td{ background:none; }
+  tr.row-unavailable td.cb input[type="checkbox"]:disabled{ cursor:not-allowed; }
+  .unavailable-badge{ background:var(--muted); color:#FFFFFF; white-space:normal; display:inline-block; margin-top:3px; }
+  td.unavailable-cell{ font-weight:700; }
+  .sw{ display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+  .empty-state{ text-align:center; color:var(--ink-dim); padding:40px 16px; font-weight:700; }
+
+  .gtable-wrap{ overflow-x:auto; border-radius:10px; border:1px solid var(--border); }
+  table.gmtable{ width:100%; min-width:0; border-collapse:separate; border-spacing:0; font-size:0.82rem; }
+  table.gmtable th{
+    text-align:left; padding:8px 10px; background:var(--bg-alt2); color:var(--ink);
+    font-weight:800; font-size:0.66rem; text-transform:uppercase; letter-spacing:0.4px;
+    border-bottom:1px solid var(--border); white-space:nowrap;
+  }
+  table.gmtable td{ padding:7px 10px; border-bottom:1px solid var(--border); color:var(--ink-dim); vertical-align:middle; }
+  table.gmtable tbody tr:last-child td{ border-bottom:none; }
+
+  .footer-cta{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    padding:26px 22px; text-align:center; margin-top:28px;
+  }
+  .legal-note{ margin-top:18px; font-size:0.76rem; color:var(--muted); line-height:1.6; }
+  .legal-note a{ color:var(--price); font-weight:800; text-decoration:none; }
+  .legal-note a:hover{ text-decoration:underline; }
+
+  .confirm-overlay{
+    display:none; position:fixed; inset:0; background:rgba(39,31,48,0.45); z-index:100;
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .confirm-card{
+    background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);
+    max-width:420px; width:100%; padding:24px; text-align:center;
+    box-shadow:0 20px 50px rgba(39,31,48,0.3);
+  }
+  .confirm-msg{ margin:0 0 14px; color:var(--ink); font-size:0.92rem; line-height:1.55; }
+  .alert-list{
+    display:none; text-align:left; margin:0 0 18px; padding:12px 16px 12px 32px;
+    background:#FBE4E8; border-radius:10px; color:#8A2C40; font-size:0.84rem; line-height:1.65;
+  }
+  .alert-list li{ margin-bottom:2px; }
+  .confirm-btns{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .confirm-btns button{
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; border-radius:10px;
+    padding:10px 20px; cursor:pointer; transition:all 0.15s ease;
+  }
+  .confirm-yes{
+    background:linear-gradient(90deg,#E8899A,#F4C08C); color:#3A2430; border:2px solid transparent;
+  }
+  .confirm-yes:hover{ transform:translateY(-1px); }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="brand">
+    <img src="assets/logo-banner.png" alt="Tabletop Games To Go" class="brand-logo">
+    <p>Individual Board Game Rental Form</p>
+  </div>
+  <div class="hero">
+    <h2>Build Your Rental</h2>
+    <p><strong>Tick the box beside every game you'd like to rent.</strong> Your picks are saved right in this browser, so you can close the tab and come back to them later.</p>
+    <p>See full pricing &amp; details on our <a href="game-rates.html" target="_blank" rel="noopener">rental rates page →</a></p>
+  </div>
+
+  <div class="details-box" id="your-details">
+    <h3>Your Details <span class="required-note">(<span class="req">*</span> required)</span></h3>
+    <div class="details-grid">
+      <div class="details-field"><label for="field-fullname">Full Name <span class="req">*</span></label><input type="text" id="field-fullname" autocomplete="name"><div class="muted-note" style="margin-top:4px;">(Make sure what you enter here is the same as the one in the Google Form)</div></div>
+      <div class="details-field"><label for="field-date">Preferred Rental Date <span class="req">*</span></label><input type="date" id="field-date"></div>
+    </div>
+    <div class="rlen-row">
+      <strong>Number of Rental Days <span class="req">*</span>:</strong>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-1day"> 1 Day</label>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-2days"> 2 Days</label>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-3days"> 3 Days</label>
+      <label class="rlen-option"><input type="radio" name="rental_length" id="rl-3plus"> 3+ Days <span class="muted-note" style="display:inline;">(need to PM Tabletop Games To Go to discuss)</span></label>
+    </div>
+  </div>
+
+  <div class="legend-box">
+    <h3>How to Read This List</h3>
+    <p>Search or filter by category, player type, mechanic, or duration to find what you're after. Each row shows player count, player type, mechanic, how long a session runs, and the rental price for a 1-, 2-, or 3-day rental. Rows marked "Ask us for a quote" aren't priced individually yet (usually a bundle or brand-new arrival) — message us to confirm the rate.</p>
+  </div>
+
+  <div class="legend-box" id="blueprint-box">
+    <h3>Build Your Rental: the Heavy/Med + Lights Blueprint</h3>
+    <p>Every game in this rental is still yours to mix and match freely. To help you land on a good spread without over-ordering, we suggest a simple Blueprint built from the same Duration badges already on each row below: one Heavy game, or two Medium games, plus a handful of Light fillers, sized to how many days you're renting.</p>
+    <div class="spine-grid" id="spine-grid"></div>
+    <p class="muted-note">These are starting points, not hard limits — but before you can save, your ticks need to add up to at least one of: 1 Heavy, 2 Medium, 3 Light, or 1 Medium + 2 Light.</p>
+    <h4>Why not just pick as many as fit?</h4>
+    <p>Even with a whole day free, most groups won't play a new game just once — you usually need at least two plays to really understand it, or to decide whether you liked it. And a rental day still has to fit meals, sleep, and actually talking to each other, not just back-to-back games. This Blueprint keeps your picks focused on games you'll get real table time with, instead of a pile that goes untouched.</p>
+  </div>
+
+  <div class="legend-box" id="categories-legend">
+    <h3>Categories in This Rental</h3>
+    <div class="cat-list" id="cat-list"></div>
+  </div>
+
+  <div class="legend-box">
+    <h3>Duration (how much table time it eats up)</h3>
+    <div id="duration-legend"></div>
+  </div>
+
+  <div class="legend-box">
+    <h3>Player Type (which of our 4 quiz archetypes it fits)</h3>
+    <div id="ptype-legend"></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <span class="ico">🔍</span>
+      <input type="text" id="search-input" placeholder="Search for a game..." autocomplete="off">
+    </div>
+    <div class="cat-chips" id="cat-chips"></div>
+    <div class="cat-chips" id="ptype-chips"></div>
+    <div class="cat-chips" id="mechanic-row">
+      <span class="filter-label">Mechanic</span>
+      <select class="mechanic-select" id="mechanic-select"></select>
+    </div>
+    <div class="cat-chips" id="duration-chips"></div>
+  </div>
+
+  <div class="result-row">
+    <div class="result-count" id="result-count"></div>
+    <span class="picked-count" id="picked-count">0 games ticked</span>
+    <button type="button" class="clear-btn" id="clear-btn">Clear my picks</button>
+  </div>
+  <div class="scroll-hint" id="scroll-hint"><span class="arrow">↔</span> Scroll sideways to see all columns</div>
+  <div class="rate-table-outer">
+    <div class="rate-table-wrap" id="rate-table-wrap">
+      <table class="rate-table">
+        <colgroup>
+          <col style="width:4%"><col style="width:15%"><col style="width:9%"><col style="width:13%">
+          <col style="width:10%"><col style="width:11%"><col style="width:9%">
+          <col style="width:10%"><col style="width:10%"><col style="width:9%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th></th><th>Game</th><th>Players</th><th>Category</th><th>Player Type</th><th>Mechanic</th><th>Duration</th>
+            <th class="tnum">1 Day</th><th class="tnum">2 Days</th><th class="tnum">3 Days</th>
+          </tr>
+        </thead>
+        <tbody id="rate-tbody"></tbody>
+      </table>
+    </div>
+    <div class="scroll-fade scroll-fade-left" id="fade-left" aria-hidden="true"></div>
+    <div class="scroll-fade scroll-fade-right" id="fade-right" aria-hidden="true"></div>
+  </div>
+  <div class="empty-state" id="empty-state" style="display:none;">No games match your search — try a different title or filter, or <a href="#" id="clear-search-link">clear your search</a>.</div>
+
+  <div class="legend-box">
+    <h3>Game Master Fees <span class="muted-note" style="display:inline;">(for your reference)</span></h3>
+    <p class="muted-note" style="margin-bottom:10px;">Want someone to teach and run the games for you? A Game Master is a paid add-on, billed separately from the game rental, based on how many hours you book them for — <strong style="color:var(--ink);font-style:normal;">add one on the booking form when you check out, not here.</strong></p>
+    <div class="gtable-wrap"><table class="gmtable">
+      <thead><tr><th>Session Length</th><th>Fee</th></tr></thead>
+      <tbody>
+        <tr><td>2 hours</td><td>₱2,000</td></tr>
+        <tr><td>3 hours</td><td>₱2,750</td></tr>
+        <tr><td>4 hours</td><td>₱3,250</td></tr>
+        <tr><td>5+ hours (planned)</td><td>₱3,250 + ₱750/additional hour</td></tr>
+        <tr><td>Unplanned overtime</td><td>+₱1,000/hour beyond your booked GM time</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted-note">GM session length is booked separately from your game rental length (1/2/3 Day) — it covers the hours the GM is actively teaching and running your table.</p>
+  </div>
+
+  <div class="footer-cta">
+    <div class="btn-row">
+      <button type="button" class="btn-primary" id="save-pdf-btn">Save Order as PDF →</button>
+    </div>
+    <p class="legal-note">Attach the saved Order PDF to your in-progress booking form to complete your order. If you don't have an in-progress order, go to our <a data-href-field="facebookUrl" href="#" target="_blank" rel="noopener">Facebook</a> or <a data-href-field="instagramUrl" href="#" target="_blank" rel="noopener">Instagram</a> to place an order.</p>
+  </div>
+</div>
+<script src="site-config.js"></script>
+<script src="board-games-data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+<script>
+(function(){
+  const BOARD_GAMES = BoardGamesData.BOARD_GAMES;
+  const CATEGORY_COLORS = BoardGamesData.CATEGORY_COLORS;
+  const CATEGORIES = Object.keys(CATEGORY_COLORS);
+
+  const CATEGORY_BLURBS = {
+    "Strategy Showcase": "Meatier strategy games with real decisions to chew on.",
+    "Family & Accessible Strategy": "Easy to teach, satisfying to play — great for mixed-experience groups.",
+    "Cooperative Missions": "Everyone wins or loses together — work as a team against the game.",
+    "Bluffing & Social Deduction": "Lie, guess, and catch each other out.",
+    "Party & Group Fun": "Loud, funny, and built for a crowd.",
+    "Quick Card & Tabletop Fillers": "Short, light games that are easy to fit between other activities.",
+    "Unmatched Battle Arena": "Head-to-head asymmetric battles — pick a fighter and go.",
+    "Uncategorized / New Arrival": "Recently added titles we're still sorting into the categories above.",
+  };
+
+  const PTYPE_COLORS = {
+    "The Architects":   { bg: "#9B5DE5", fg: "#F7F1E6" },
+    "The Conquerors":   { bg: "#E6394A", fg: "#F7F1E6" },
+    "The Dreamweavers": { bg: "#4FB477", fg: "#12241A" },
+    "The Connectors":   { bg: "#FFD23F", fg: "#1A1220" },
+  };
+  const PLAYER_TYPES = Object.keys(PTYPE_COLORS);
+  const PLAYER_TYPE_DESC = {
+    "The Architects":   "Strategic planners who love a real system to master — they see three moves ahead.",
+    "The Conquerors":   "Competitive players who play to win and want the table to remember it.",
+    "The Dreamweavers": "Story-and-immersion players who want a game to feel like a world, not just a game.",
+    "The Connectors":   "Social players who show up for the people at the table as much as the game itself.",
+  };
+  const DURATION_COLORS = {
+    Light:  { bg: "#4FB477", fg: "#12241A" },
+    Medium: { bg: "#F4A259", fg: "#1A1220" },
+    Heavy:  { bg: "#E6394A", fg: "#F7F1E6" },
+  };
+  const DURATIONS = Object.keys(DURATION_COLORS);
+  const DURATION_DESC = {
+    Light:  "Quick and easy — the shortest, lowest-fuss games in our library.",
+    Medium: "A solid middle ground — a bit more meat than a filler, still moves at a good pace.",
+    Heavy:  "Our longest or most involved games — more rules, more depth, more table time.",
+  };
+  const MECHANICS = [...new Set(BOARD_GAMES.map(g => g.primaryMechanic).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  const SPINE = [["1 Day", 3], ["2 Days", 5], ["3 Days", 7]];
+
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  function formatPeso(n){ return "₱" + Number(n).toLocaleString("en-PH"); }
+  function swatch(color){ return `<span class="sw" style="background:${color}"></span>`; }
+  function durBadge(key){
+    const c = DURATION_COLORS[key];
+    if (!c) return "—";
+    return `<span class="badge-pill" style="background:${c.bg};color:${c.fg};">${esc(key)}</span>`;
+  }
+
+  // ---------- "Build Your Rental" spine boxes ----------
+  function renderSpine(){
+    const wrap = document.getElementById("spine-grid");
+    wrap.innerHTML = SPINE.map(([days, lights]) => `
+      <div class="spine-box">
+        <div class="spine-day">${days}</div>
+        <div class="spine-opt">1× ${durBadge("Heavy")} + ${lights}× ${durBadge("Light")}</div>
+        <div class="spine-opt"><span class="spine-or">or</span> 2× ${durBadge("Medium")} + ${lights}× ${durBadge("Light")}</div>
+      </div>
+    `).join("");
+  }
+
+  // ---------- legends ----------
+  function renderCategoryList(){
+    const wrap = document.getElementById("cat-list");
+    wrap.innerHTML = CATEGORIES.map(cat => {
+      const n = BOARD_GAMES.filter(g => g.category === cat).length;
+      const c = CATEGORY_COLORS[cat];
+      return `<div class="cat-list-item"><span class="cat-sw" style="background:${c.bg};"></span>${esc(cat)} (${n} games)</div>`;
+    }).join("");
+  }
+  function renderSwatchLegend(targetId, items, colorMap, descMap){
+    const wrap = document.getElementById(targetId);
+    wrap.innerHTML = items.map(key => {
+      const c = colorMap[key];
+      return `<div class="swatch-row">
+        <span class="swatch-badge" style="background:${c.bg};color:${c.fg};">${esc(key)}</span>
+        <span class="swatch-desc">${esc(descMap[key])}</span>
+      </div>`;
+    }).join("");
+  }
+
+  // ---------- persistence ----------
+  // Checked state is keyed by game name (not DOM presence), so a tick made
+  // while one filter was active is still counted/saved/PDF'd correctly after
+  // switching filters and the row disappears from the table.
+  const STORAGE_PREFIX = "tgtg_checklist_";
+  function gameCbId(g){ return "chk__" + slug(g.name); }
+  function isPicked(g){
+    try { return localStorage.getItem(STORAGE_PREFIX + gameCbId(g)) === "1"; }
+    catch (e) { return false; }
+  }
+  function setPicked(g, checked){
+    try {
+      if (checked) localStorage.setItem(STORAGE_PREFIX + gameCbId(g), "1");
+      else localStorage.removeItem(STORAGE_PREFIX + gameCbId(g));
+    } catch (e) { /* storage unavailable — selections just won't persist */ }
+  }
+
+  // ---------- filter state (mirrors game-rates.html) ----------
+  let activeCategory = "All";
+  let activePlayerType = "All";
+  let activeMechanic = "All";
+  let activeDuration = "All";
+  let searchTerm = "";
+
+  function renderChips(){
+    const wrap = document.getElementById("cat-chips");
+    wrap.innerHTML = "";
+    const label = document.createElement("span");
+    label.className = "filter-label";
+    label.textContent = "Category";
+    wrap.appendChild(label);
+
+    const allChip = document.createElement("button");
+    allChip.className = "cat-chip" + (activeCategory === "All" ? " active" : "");
+    allChip.textContent = "All Games";
+    allChip.style.background = "var(--bg-alt2)";
+    allChip.onclick = () => { activeCategory = "All"; renderChips(); renderTable(); };
+    wrap.appendChild(allChip);
+
+    CATEGORIES.forEach(cat => {
+      const c = CATEGORY_COLORS[cat];
+      const chip = document.createElement("button");
+      chip.className = "cat-chip" + (activeCategory === cat ? " active" : "");
+      chip.textContent = cat;
+      chip.style.background = c.bg;
+      chip.style.color = c.fg;
+      chip.onclick = () => { activeCategory = cat; renderChips(); renderTable(); };
+      wrap.appendChild(chip);
+    });
+  }
+
+  function renderPlayerTypeChips(){
+    const wrap = document.getElementById("ptype-chips");
+    wrap.innerHTML = "";
+    const label = document.createElement("span");
+    label.className = "filter-label";
+    label.textContent = "Player Type";
+    wrap.appendChild(label);
+
+    const allChip = document.createElement("button");
+    allChip.className = "cat-chip" + (activePlayerType === "All" ? " active" : "");
+    allChip.textContent = "All";
+    allChip.style.background = "var(--bg-alt2)";
+    allChip.onclick = () => { activePlayerType = "All"; renderPlayerTypeChips(); renderTable(); };
+    wrap.appendChild(allChip);
+
+    PLAYER_TYPES.forEach(pt => {
+      const c = PTYPE_COLORS[pt];
+      const chip = document.createElement("button");
+      chip.className = "cat-chip" + (activePlayerType === pt ? " active" : "");
+      chip.textContent = pt;
+      chip.style.background = c.bg;
+      chip.style.color = c.fg;
+      chip.onclick = () => { activePlayerType = pt; renderPlayerTypeChips(); renderTable(); };
+      wrap.appendChild(chip);
+    });
+  }
+
+  function renderMechanicSelect(){
+    const sel = document.getElementById("mechanic-select");
+    sel.innerHTML = "";
+    const allOpt = document.createElement("option");
+    allOpt.value = "All";
+    allOpt.textContent = "All Mechanics";
+    sel.appendChild(allOpt);
+    MECHANICS.forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      sel.appendChild(opt);
+    });
+    sel.value = activeMechanic;
+    sel.onchange = () => { activeMechanic = sel.value; renderTable(); };
+  }
+
+  function renderDurationChips(){
+    const wrap = document.getElementById("duration-chips");
+    wrap.innerHTML = "";
+    const label = document.createElement("span");
+    label.className = "filter-label";
+    label.textContent = "Duration";
+    wrap.appendChild(label);
+
+    const allChip = document.createElement("button");
+    allChip.className = "cat-chip" + (activeDuration === "All" ? " active" : "");
+    allChip.textContent = "All";
+    allChip.style.background = "var(--bg-alt2)";
+    allChip.onclick = () => { activeDuration = "All"; renderDurationChips(); renderTable(); };
+    wrap.appendChild(allChip);
+
+    DURATIONS.forEach(d => {
+      const c = DURATION_COLORS[d];
+      const chip = document.createElement("button");
+      chip.className = "cat-chip" + (activeDuration === d ? " active" : "");
+      chip.textContent = d;
+      chip.style.background = c.bg;
+      chip.style.color = c.fg;
+      chip.onclick = () => { activeDuration = d; renderDurationChips(); renderTable(); };
+      wrap.appendChild(chip);
+    });
+  }
+
+  // ---------- table ----------
+  // Arce-owned games aren't ours to rent out — shown for browsing but
+  // greyed out, checkbox disabled, with an "Unavailable as of the moment"
+  // badge in place of pricing so it reads as a hard block, not a pricing
+  // gap like "Ask us".
+  function isUnavailable(g){ return g.owner === "Arce"; }
+
+  function gameRow(g){
+    const id = gameCbId(g);
+    const cc = CATEGORY_COLORS[g.category] || { bg: "#8C7FA0" };
+    const unavailable = isUnavailable(g);
+    const hasRate = g.d1 > 0 || g.d2 > 0 || g.d3 > 0;
+    const rateCells = unavailable
+      ? `<td colspan="3" class="quote-cell unavailable-cell">Unavailable as of the moment</td>`
+      : hasRate
+      ? `<td class="g-price">${formatPeso(g.d1)}</td><td class="g-price">${formatPeso(g.d2)}</td><td class="g-price">${formatPeso(g.d3)}</td>`
+      : `<td colspan="3" class="quote-cell">Ask us for a quote</td>`;
+    const nameCell = unavailable
+      ? `<label for="${id}">${esc(g.name)}</label><br><span class="badge-pill unavailable-badge">Unavailable as of the moment</span>`
+      : `<label for="${id}">${esc(g.name)}</label>`;
+    return `<tr${unavailable ? ' class="row-unavailable"' : ""}>
+      <td class="cb"><input type="checkbox" id="${id}" class="game-cb" data-name="${esc(g.name)}"${unavailable ? " disabled" : (isPicked(g) ? " checked" : "")}></td>
+      <td class="g-name">${nameCell}</td>
+      <td class="players">${esc(g.players || "—")}</td>
+      <td>${swatch(cc.bg)}${esc(g.category)}</td>
+      <td class="ptype">${esc((g.playerType || "—").replace("The ", ""))}</td>
+      <td class="mechanic">${esc(g.primaryMechanic || "—")}</td>
+      <td>${durBadge(g.tgtgDuration)}</td>
+      ${rateCells}
+    </tr>`;
+  }
+
+  function renderTable(){
+    const tbody = document.getElementById("rate-tbody");
+    const empty = document.getElementById("empty-state");
+    const countEl = document.getElementById("result-count");
+
+    const term = searchTerm.trim().toLowerCase();
+    const filtered = BOARD_GAMES.filter(g => {
+      const matchesCat = activeCategory === "All" || g.category === activeCategory;
+      const matchesPType = activePlayerType === "All" || g.playerType === activePlayerType;
+      const matchesMechanic = activeMechanic === "All" || g.primaryMechanic === activeMechanic;
+      const matchesDuration = activeDuration === "All" || g.tgtgDuration === activeDuration;
+      const matchesSearch = !term || g.name.toLowerCase().includes(term);
+      return matchesCat && matchesPType && matchesMechanic && matchesDuration && matchesSearch;
+    }).sort((a, b) => a.name.localeCompare(b.name));
+
+    const filterBits = [
+      activeCategory !== "All" ? activeCategory : "",
+      activePlayerType !== "All" ? activePlayerType : "",
+      activeMechanic !== "All" ? activeMechanic : "",
+      activeDuration !== "All" ? activeDuration + " duration" : "",
+    ].filter(Boolean);
+    countEl.textContent = filtered.length + (filtered.length === 1 ? " game" : " games") +
+      (filterBits.length ? " — " + filterBits.join(", ") : "");
+
+    if (!filtered.length) {
+      tbody.innerHTML = "";
+      empty.style.display = "block";
+      document.querySelector(".rate-table-outer").style.display = "none";
+      document.getElementById("scroll-hint").classList.remove("visible");
+      return;
+    }
+    empty.style.display = "none";
+    document.querySelector(".rate-table-outer").style.display = "";
+    tbody.innerHTML = filtered.map(gameRow).join("");
+    updateScrollFades();
+  }
+
+  // Makes horizontal scrollability obvious on mobile: shows a "scroll
+  // sideways" hint and left/right edge fades, updating live as the user
+  // scrolls the table.
+  function updateScrollFades(){
+    const wrap = document.getElementById("rate-table-wrap");
+    const hint = document.getElementById("scroll-hint");
+    const fadeLeft = document.getElementById("fade-left");
+    const fadeRight = document.getElementById("fade-right");
+    const canScroll = wrap.scrollWidth > wrap.clientWidth + 1;
+    hint.classList.toggle("visible", canScroll);
+    fadeLeft.style.opacity = (canScroll && wrap.scrollLeft > 4) ? "1" : "0";
+    fadeRight.style.opacity = (canScroll && wrap.scrollLeft < wrap.scrollWidth - wrap.clientWidth - 4) ? "1" : "0";
+  }
+
+  // ---------- confirm/alert modal (ported from rental-bundles.js) ----------
+  // A single-button "here's what's missing" popup — message plus an optional
+  // bulleted list of specific issues, used to explain why Save didn't go
+  // through instead of just silently refusing.
+  let alertOverlay = null;
+  function showAlertModal(message, issues) {
+    return new Promise((resolve) => {
+      if (!alertOverlay) {
+        alertOverlay = document.createElement("div");
+        alertOverlay.className = "confirm-overlay";
+        alertOverlay.innerHTML = '<div class="confirm-card"><p class="confirm-msg"></p><ul class="alert-list"></ul><div class="confirm-btns">'
+          + '<button type="button" class="confirm-yes alert-ok"></button>'
+          + "</div></div>";
+        document.body.appendChild(alertOverlay);
+      }
+      alertOverlay.querySelector(".confirm-msg").textContent = message;
+      const list = alertOverlay.querySelector(".alert-list");
+      list.innerHTML = "";
+      if (issues && issues.length) {
+        issues.forEach((i) => {
+          const li = document.createElement("li");
+          li.textContent = i;
+          list.appendChild(li);
+        });
+        list.style.display = "block";
+      } else {
+        list.style.display = "none";
+      }
+      const okBtn = alertOverlay.querySelector(".alert-ok");
+      okBtn.textContent = "OK, got it";
+      alertOverlay.style.display = "flex";
+      function close() {
+        alertOverlay.style.display = "none";
+        okBtn.onclick = null; alertOverlay.onclick = null;
+        resolve();
+      }
+      okBtn.onclick = close;
+      alertOverlay.onclick = (e) => { if (e.target === alertOverlay) close(); };
+    });
+  }
+
+  // ---------- "Your Details" persistence ----------
+  // Rentals need at least 2 days' lead time to prepare — the date picker
+  // can't be set to today or tomorrow, only 2+ days out.
+  function setMinRentalDate(){
+    const input = document.getElementById("field-date");
+    if (!input) return;
+    const min = new Date();
+    min.setDate(min.getDate() + 2);
+    const iso = min.getFullYear() + "-" + String(min.getMonth() + 1).padStart(2, "0") + "-" + String(min.getDate()).padStart(2, "0");
+    input.min = iso;
+  }
+  function formatDateNice(iso){
+    if (!iso) return "";
+    const [y, m, d] = iso.split("-").map(Number);
+    if (!y || !m || !d) return iso;
+    const dt = new Date(y, m - 1, d);
+    return dt.toLocaleDateString("en-PH", { year: "numeric", month: "long", day: "numeric" });
+  }
+  // Windows/macOS both forbid <>:"/\|?* in filenames — strip those plus any
+  // stray whitespace runs (e.g. from the "3+ Days (need to PM Tabletop Games
+  // To Go to discuss)" parenthetical, which this also trims off entirely
+  // since it's too long/punctuation-heavy to belong in a filename).
+  function sanitizeFilenamePart(s){
+    return String(s || "")
+      .split("(")[0]
+      .replace(/[<>:"/\\|?*]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  function buildPdfFilename(details){
+    const parts = [
+      sanitizeFilenamePart(details.fullName),
+      sanitizeFilenamePart(details.date),
+      sanitizeFilenamePart(details.rentalLength),
+    ];
+    return `TGTGIO-${parts.join("-")}.pdf`;
+  }
+  function bindDetailsFields(container){
+    if (!container) return;
+    container.querySelectorAll('input[type="text"], input[type="date"]').forEach(input => {
+      try {
+        const v = localStorage.getItem(STORAGE_PREFIX + input.id);
+        if (v !== null) input.value = v;
+      } catch (e) {}
+      input.addEventListener("input", () => {
+        // Full Name feeds straight into the saved PDF's filename, which uses
+        // "-" as the field separator — a dash in the name itself would make
+        // the filename ambiguous to split back apart, so it's stripped live
+        // rather than caught later at save time.
+        if (input.id === "field-fullname" && input.value.includes("-")) {
+          const pos = input.selectionStart;
+          const before = input.value.slice(0, pos).replace(/-/g, "").length;
+          input.value = input.value.replace(/-/g, "");
+          input.setSelectionRange(before, before);
+        }
+        try { localStorage.setItem(STORAGE_PREFIX + input.id, input.value); } catch (e) {}
+      });
+    });
+    container.querySelectorAll('input[type="radio"]').forEach(input => {
+      try { input.checked = localStorage.getItem(STORAGE_PREFIX + input.id) === "1"; } catch (e) {}
+      input.addEventListener("change", () => {
+        try {
+          container.querySelectorAll(`input[type="radio"][name="${input.name}"]`).forEach(r => {
+            localStorage.removeItem(STORAGE_PREFIX + r.id);
+          });
+          if (input.checked) localStorage.setItem(STORAGE_PREFIX + input.id, "1");
+        } catch (e) {}
+      });
+    });
+  }
+  function collectDetails(container){
+    if (!container) return {};
+    const get = (id) => { const el = container.querySelector("#" + id); return el ? el.value.trim() : ""; };
+    const checked = (id) => { const el = container.querySelector("#" + id); return !!(el && el.checked); };
+    let rentalLength = "";
+    [["rl-1day", "1 Day"], ["rl-2days", "2 Days"], ["rl-3days", "3 Days"], ["rl-3plus", "3+ Days (PM to discuss)"]].forEach(([id, label]) => {
+      if (checked(id)) rentalLength = label;
+    });
+    // Defensive re-strip in case a dash reached storage before this field
+    // existed (an older saved value) or slipped in outside the input event.
+    return { fullName: get("field-fullname").replace(/-/g, ""), date: get("field-date"), rentalLength };
+  }
+
+  function updatePickedCount(){
+    const n = BOARD_GAMES.filter(isPicked).length;
+    document.getElementById("picked-count").textContent = n + (n === 1 ? " game ticked" : " games ticked");
+  }
+
+  // ---------- save picks as PDF ----------
+  // Built straight from BOARD_GAMES + localStorage (not scraped off the
+  // rendered rows) — a game ticked under one filter view must still count
+  // after the active filter hides its row.
+  function collectPicks(){
+    return BOARD_GAMES.filter(isPicked).map(g => ({
+      name: g.name,
+      category: g.category,
+      players: g.players || "—",
+      ptype: (g.playerType || "—").replace("The ", ""),
+      mechanic: g.primaryMechanic || "—",
+      duration: g.tgtgDuration || "",
+      price: (g.d1 > 0 || g.d2 > 0 || g.d3 > 0)
+        ? `${formatPeso(g.d1)} / ${formatPeso(g.d2)} / ${formatPeso(g.d3)}`
+        : "Ask us for a quote",
+    }));
+  }
+
+  // Everything that must be true before a PDF is allowed to save, gathered
+  // into one list rather than stopping at the first problem — the client
+  // fixes everything in one pass instead of hitting a new popup each time
+  // they resolve one issue.
+  function collectValidationIssues(details, picks){
+    const issues = [];
+    if (!details.fullName) issues.push("Full Name is blank");
+    if (!details.date) issues.push("Preferred Rental Date is blank");
+    if (!details.rentalLength) issues.push("No Number of Rental Days (1/2/3 Day) selected");
+
+    // Your ticked games must add up to at least one minimum combination —
+    // same idea as the Rental Bundles' "min. 3 games" rule, but keyed to the
+    // Heavy/Medium/Light weight of what's ticked instead of a flat count.
+    const counts = { Heavy: 0, Medium: 0, Light: 0 };
+    picks.forEach(p => { if (counts.hasOwnProperty(p.duration)) counts[p.duration]++; });
+    const meetsMinimum = counts.Heavy >= 1
+      || counts.Medium >= 2
+      || counts.Light >= 3
+      || (counts.Medium >= 1 && counts.Light >= 2);
+    if (!meetsMinimum) {
+      issues.push("Your ticked games don't meet the minimum combination yet — pick at least 1 Heavy, or 2 Medium, or 3 Light, or 1 Medium + 2 Light");
+    }
+
+    return issues;
+  }
+
+  function savePicksPdf(detailsContainer){
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+      showAlertModal("Couldn't load the PDF tool (check your internet connection) — please try again.");
+      return;
+    }
+    const picks = collectPicks();
+    const details = collectDetails(detailsContainer);
+    const issues = collectValidationIssues(details, picks);
+    if (issues.length) {
+      showAlertModal("Can't save yet — here's what's missing:", issues);
+      return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: "portrait", unit: "pt", format: "a4" });
+    const marginX = 40;
+
+    doc.setFont("helvetica", "bold"); doc.setFontSize(16);
+    doc.text("TGTG — Individual Board Game Rental Form Picks", marginX, 44);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(110);
+    doc.text("Tabletop Games To Go · saved " + new Date().toLocaleDateString(), marginX, 60);
+    doc.setTextColor(0);
+
+    let y = 84;
+    doc.setFont("helvetica", "bold"); doc.setFontSize(12);
+    doc.text("Your Details", marginX, y);
+    y += 16;
+    doc.setFont("helvetica", "normal"); doc.setFontSize(10);
+    [
+      "Full Name: " + (details.fullName || "—"),
+      "Preferred Rental Date: " + (details.date ? formatDateNice(details.date) : "—"),
+      "Number of Rental Days: " + (details.rentalLength || "(not selected)"),
+    ].forEach(line => { doc.text(line, marginX, y); y += 15; });
+    y += 12;
+
+    doc.setFont("helvetica", "bold"); doc.setFontSize(12);
+    doc.text("Picked Games (" + picks.length + ")", marginX, y);
+    y += 10;
+    doc.autoTable({
+      startY: y,
+      margin: { left: marginX, right: marginX },
+      head: [["Game", "Category", "Players", "Player Type", "Mechanic", "Duration", "Price (1/2/3-Day)"]],
+      // jsPDF's built-in fonts only cover WinAnsi/Latin-1 — the peso sign (₱)
+      // isn't in that set and renders garbled. Swap it for plain "P" here only.
+      body: picks.map(g => [g.name, g.category, g.players, g.ptype, g.mechanic, g.duration, g.price.replace(/₱/g, "P")]),
+      styles: { fontSize: 8, cellPadding: 4 },
+      headStyles: { fillColor: [93, 65, 120], textColor: 255 },
+      theme: "striped",
+    });
+
+    doc.save(buildPdfFilename(details));
+  }
+
+  function init(){
+    renderSpine();
+    renderCategoryList();
+    renderSwatchLegend("duration-legend", DURATIONS, DURATION_COLORS, DURATION_DESC);
+    renderSwatchLegend("ptype-legend", PLAYER_TYPES, PTYPE_COLORS, PLAYER_TYPE_DESC);
+
+    renderChips();
+    renderPlayerTypeChips();
+    renderMechanicSelect();
+    renderDurationChips();
+    renderTable();
+    updatePickedCount();
+
+    const tbody = document.getElementById("rate-tbody");
+    tbody.addEventListener("change", (e) => {
+      if (!e.target.classList.contains("game-cb")) return;
+      const g = BOARD_GAMES.find(x => x.name === e.target.dataset.name);
+      if (g) setPicked(g, e.target.checked);
+      updatePickedCount();
+    });
+
+    document.getElementById("rate-table-wrap").addEventListener("scroll", updateScrollFades);
+    window.addEventListener("resize", updateScrollFades);
+
+    document.getElementById("search-input").addEventListener("input", (e) => {
+      searchTerm = e.target.value;
+      renderTable();
+    });
+    document.getElementById("clear-search-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      searchTerm = "";
+      document.getElementById("search-input").value = "";
+      renderTable();
+    });
+
+    const details = document.getElementById("your-details");
+    setMinRentalDate();
+    bindDetailsFields(details);
+
+    document.getElementById("clear-btn").addEventListener("click", () => {
+      if (!confirm("Clear all your ticked boxes?")) return;
+      BOARD_GAMES.forEach(g => setPicked(g, false));
+      renderTable();
+      updatePickedCount();
+    });
+
+    document.getElementById("save-pdf-btn").addEventListener("click", () => savePicksPdf(details));
+
+    SiteConfig.applySiteConfig(document, SiteConfig.SITE);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
