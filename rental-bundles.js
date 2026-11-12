@@ -748,6 +748,23 @@
       });
     }
 
+    // ---- staff-only section ----
+    // A blank Transaction ID field for TGTG staff to fill in by hand once the
+    // order is logged — never pre-filled by the client's browser.
+    let yStaff = y + 10;
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const staffBoxHeight = 50;
+    if (yStaff + staffBoxHeight > pageHeight - 40) { doc.addPage(); yStaff = 44; }
+    doc.setDrawColor(230, 57, 74);
+    doc.setLineWidth(1);
+    doc.rect(marginX, yStaff, 515, staffBoxHeight);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(230, 57, 74);
+    doc.text("FOR TGTG EMPLOYEE USE ONLY", marginX + 10, yStaff + 16);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(0);
+    doc.text("Transaction ID:", marginX + 10, yStaff + 36);
+    doc.setDrawColor(0);
+    doc.line(marginX + 95, yStaff + 37, marginX + 505, yStaff + 37);
+
     doc.save(buildPdfFilename(variant, details));
   }
 
